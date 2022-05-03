@@ -10,13 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 #include <stdio.h>
-
-typedef struct s_list
-{
-    int content;
-    struct s_list *next;
-
-}t_list;
+#include "push_swap.h"
 
 int	ft_isdigit(int c)
 {
@@ -25,12 +19,13 @@ int	ft_isdigit(int c)
 	return (0);
 }
 
-char	*ft_substr(char const *s, unsigned int start, size_t len)
+int ft_substr(char const *s, unsigned int start, size_t len)
 {
 	char	*dst;
 	size_t	i;
 	size_t	j;
 	size_t	length;
+    int     result;
 
 	length = 0;
 	if (s)
@@ -40,45 +35,61 @@ char	*ft_substr(char const *s, unsigned int start, size_t len)
 	else
 		dst = (char *) malloc (sizeof(char) * (len + 1));
 	if (s == NULL || dst == NULL)
-		return (NULL);
+		return (0);
 	i = 0;
 	j = start;
 	while (i < len && j < ft_strlen(s))
 		dst[i++] = s[j++];
 	dst[i] = '\0';
-	return (dst);
+    result = ft_atoi(dst);
+    free(dst);
+	return (result);
 }
 
-void    parsing(t_list *tab, char *arg) 
+void    parsing(t_list *lst, char **arg) 
 {
-    int i;
-    int j;
-    char    *buffer;
+    int     i;
+    int     j;
+    int     start;
+    int     buffer;
+    t_list  *new_lst;
 
-    i = 0;
+    i = 1;
     while (arg[i])
     {
-        j = i;
-        while (!ft_isdigit(arg[j]))
-            j++;
-        buffer = ft_substr(arg, i , j- i + 1);
-        tab->content = buffer;
-        tab->next = 
-        i = j + 1;
+        j = 0;
+        while (arg[i][j])
+        {
+            while (ft_isdigit(arg[i][j]) == 0)
+                j++;
+            start = j;
+            while (!ft_isdigit(arg[i][j]))
+                j++;
+            buffer = ft_substr(arg[i], start, j);
+            new_lst = ft_lstnew(buffer);
+            ft_lstadd_back(lst, new_lst);
+        }
+        i++;
     }
+    return ;
 }
 
 
 int main(int argc, char **argv)
 {
-    t_list *tab;
+    t_list *lst;
     int i;
 
     if (argc == 1)
         return (0);
-    tab = (t_list)malloc(sizeof(t_list));
-    parsing(tab, argv[1]);
-        
-    printf("first letter is: %s\n", argv[1]);
-    printf("second letter is: %s\n", argv[2]);
+    lst = (t_list *)malloc(sizeof(t_list));
+    parsing(lst, argv);
+
+    printf("the element of the list\n");   
+    while (lst)
+    {
+        printf("%ls\n", lst->content);
+        lst = lst->next;
+    }
+    return (0);
 }
