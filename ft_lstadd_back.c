@@ -11,17 +11,17 @@
 /* ************************************************************************** */
 #include "push_swap.h"
 
-void	ft_lstadd_back(t_list **lst, t_list *new)
+void	ft_lstadd_back(t_list *lst, t_list *new)
 {
 	t_list	*repl;
 
 	if (!new)
 		return ;
-	if (!*lst)
+	if (!lst)
 	{
-		*lst = new;
+		lst = new;
 		return ;
 	}
-	repl = ft_lstlast(*lst);
+	repl = ft_lstlast(lst);
 	repl->next = new;
 }

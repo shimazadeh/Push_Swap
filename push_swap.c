@@ -9,15 +9,7 @@
 /*   Updated: 2022/04/24 15:50:03 by shabibol         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-#include <stdio.h>
 #include "push_swap.h"
-
-int	ft_isdigit(int c)
-{
-	if (c >= 48 && c <= 57)
-		return (1);
-	return (0);
-}
 
 int ft_substr(char const *s, unsigned int start, size_t len)
 {
@@ -52,22 +44,28 @@ void    parsing(t_list *lst, char **arg)
     int     j;
     int     start;
     int     buffer;
+    int     size;
     t_list  *new_lst;
 
     i = 1;
     while (arg[i])
     {
+        size = ft_strlen(arg[i]);
         j = 0;
-        while (arg[i][j])
+        while (arg[i][j] && j < size)
         {
-            while (ft_isdigit(arg[i][j]) == 0)
+            while (j < size && ft_isdigit(arg[i][j]) == 0)
                 j++;
             start = j;
-            while (!ft_isdigit(arg[i][j]))
+            while (j < size && ft_isdigit(arg[i][j]) == 1)
                 j++;
-            buffer = ft_substr(arg[i], start, j);
-            new_lst = ft_lstnew(buffer);
-            ft_lstadd_back(lst, new_lst);
+            if (j <= size)
+            {
+                buffer = ft_substr(arg[i], start, j);
+                new_lst = ft_lstnew(buffer);
+                ft_lstadd_back(lst, new_lst);
+            }
+            j++;
         }
         i++;
     }
@@ -78,7 +76,6 @@ void    parsing(t_list *lst, char **arg)
 int main(int argc, char **argv)
 {
     t_list *lst;
-    int i;
 
     if (argc == 1)
         return (0);
@@ -88,7 +85,7 @@ int main(int argc, char **argv)
     printf("the element of the list\n");   
     while (lst)
     {
-        printf("%ls\n", lst->content);
+        printf("%d\n", lst->content);
         lst = lst->next;
     }
     return (0);
