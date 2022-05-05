@@ -38,7 +38,7 @@ int ft_substr(char const *s, unsigned int start, size_t len)
 	return (result);
 }
 
-void    parsing(t_list *lst, char **arg) 
+void    parsing(t_list **lst, char **arg) 
 {
     int     i;
     int     j;
@@ -54,10 +54,10 @@ void    parsing(t_list *lst, char **arg)
         j = 0;
         while (arg[i][j] && j < size)
         {
-            while (j < size && ft_isdigit(arg[i][j]) == 0)
+            while (j < size && !ft_isnum(arg[i][j]))
                 j++;
             start = j;
-            while (j < size && ft_isdigit(arg[i][j]) == 1)
+            while (j < size && ft_isnum(arg[i][j]) == 1)
                 j++;
             if (j <= size)
             {
@@ -72,6 +72,63 @@ void    parsing(t_list *lst, char **arg)
     return ;
 }
 
+int error_check(char **arg)
+{
+    int i;
+    int j;
+    int size;
+
+    i = 1;
+    while (arg[i])
+    {
+        size = ft_strlen(arg[i]);
+        j = 0;
+        while (arg[i][j] && j < size)
+        {
+            if (ft_isalpha(arg[i][j]) == 1)
+                return (1);
+            if (!ft_isnum(arg[i][j]) && !ft_isspace(arg[i][j]))
+                return (1);
+            j++;
+        }
+        i++;
+    }
+    return (0);
+}
+
+int dup_error_check(int count, char **arg)
+{
+    int     i;
+    int     j;
+    int     k;
+    char    **tab;
+    int     size;
+
+    i = 1;
+    while (arg[i])
+    {
+        j = 0;
+        if (count == 2)
+            tab = ft_split(arg[i], ' ');
+        else
+            tab = arg;
+        while (tab[j])
+        {
+            k = j + 1;
+            while (tab[k])
+            {
+                size = ft_max(ft_strlen(tab[j]), ft_strlen(tab[k]));
+                if (!ft_strncmp(tab[j], tab[k], size))
+                    return (1);
+                k++;
+            }
+            j++;
+        }
+        i++;
+    }
+    free(tab);
+    return (0);
+}
 
 int main(int argc, char **argv)
 {
@@ -79,9 +136,15 @@ int main(int argc, char **argv)
 
     if (argc == 1)
         return (0);
-    lst = (t_list *)malloc(sizeof(t_list));
-    parsing(lst, argv);
+    if (error_check(argv) == 1 || dup_error_check(argc, argv) == 1)
+//    if (error_check(argv) == 1)
+        {
+            write (1, "Error\n", 6);
+            return (0);
+        }
+    lst = NULL;
 
+    parsing(&lst, argv);
     printf("the element of the list\n");   
     while (lst)
     {

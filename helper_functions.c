@@ -1,27 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_Lstadd_back.c                                   :+:      :+:    :+:   */
+/*   helper_functions.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: shabibol <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/02/28 04:09:48 by shabibol          #+#    #+#             */
-/*   Updated: 2022/03/04 22:29:05 by shabibol         ###   ########.fr       */
+/*   Created: 2022/05/05 19:25:20 by shabibol          #+#    #+#             */
+/*   Updated: 2022/05/05 19:25:22 by shabibol         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
 #include "push_swap.h"
 
-void	ft_lstadd_back(t_list **lst, t_list *new)
+int ft_max(int a, int b)
 {
-	t_list	*repl;
-
-	if (!new)
-		return ;
-	if (!(*lst))
-	{
-		*lst = new;
-		return ;
-	}
-	repl = ft_lstlast(*lst);
-	repl->next = new;
+    if (a > b)
+        return (a);
+    else
+        return (b);
 }

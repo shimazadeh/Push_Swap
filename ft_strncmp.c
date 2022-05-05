@@ -1,27 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_Lstadd_back.c                                   :+:      :+:    :+:   */
+/*   ft_strncmp.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: shabibol <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/02/28 04:09:48 by shabibol          #+#    #+#             */
-/*   Updated: 2022/03/04 22:29:05 by shabibol         ###   ########.fr       */
+/*   Created: 2022/02/28 04:26:57 by shabibol          #+#    #+#             */
+/*   Updated: 2022/03/02 09:46:38 by shabibol         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
 #include "push_swap.h"
 
-void	ft_lstadd_back(t_list **lst, t_list *new)
+int	ft_strncmp(const char *s1, const char *s2, size_t n)
 {
-	t_list	*repl;
+	size_t	k;
 
-	if (!new)
-		return ;
-	if (!(*lst))
+	k = 0;
+	while (k < n)
 	{
-		*lst = new;
-		return ;
+		if (s1[k] != s2[k])
+			return ((unsigned char)s1[k] - (unsigned char)s2[k]);
+		if (s1[k] == '\0')
+			return (0);
+		k++;
 	}
-	repl = ft_lstlast(*lst);
-	repl->next = new;
+	return (0);
 }
