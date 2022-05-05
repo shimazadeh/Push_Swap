@@ -96,7 +96,7 @@ int error_check(char **arg)
     return (0);
 }
 
-int dup_error_check(int count, char **arg)
+int dup_error_check(char **arg)
 {
     int     i;
     int     j;
@@ -108,10 +108,7 @@ int dup_error_check(int count, char **arg)
     while (arg[i])
     {
         j = 0;
-        if (count == 2)
-            tab = ft_split(arg[i], ' ');
-        else
-            tab = arg;
+        tab = ft_split(arg[i], ' ');
         while (tab[j])
         {
             k = j + 1;
@@ -136,8 +133,7 @@ int main(int argc, char **argv)
 
     if (argc == 1)
         return (0);
-    if (error_check(argv) == 1 || dup_error_check(argc, argv) == 1)
-//    if (error_check(argv) == 1)
+    if (error_check(argv) == 1 || dup_error_check(argv) == 1)
         {
             write (1, "Error\n", 6);
             return (0);

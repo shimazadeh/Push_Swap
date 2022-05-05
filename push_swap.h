@@ -35,7 +35,7 @@ int		ft_isspace(int c);
 int		ft_isnum(int c);
 int 	ft_max(int a, int b);
 
-int		dup_error_check(int count, char **arg);
+int		dup_error_check(char **arg);
 int		error_check(char **arg);
 
 
