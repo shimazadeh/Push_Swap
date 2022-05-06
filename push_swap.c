@@ -37,7 +37,7 @@ int ft_substr(char const *s, unsigned int start, size_t len)
     free(dst);
 	return (result);
 }
-
+/*
 void    parsing(t_list **lst, char **arg) 
 {
     int     i;
@@ -70,10 +70,32 @@ void    parsing(t_list **lst, char **arg)
         i++;
     }
     return ;
+}*/
+
+void    parsing(t_list **lst, char **arg) 
+{
+    int     i;
+    int     j;
+    char    **tab;
+    int     buffer;
+    t_list  *new_lst;
+
+    i = 1;
+    while (arg[i])
+    {
+       tab = ft_split(arg[i], ' ');
+       j = 0;
+        while (tab[j])
+        {
+            buffer = ft_atoi(tab[j]);
+            new_lst = ft_lstnew(buffer);
+            ft_lstadd_back(lst, new_lst);
+            j++;
+        }
+        i++;
+    }
+    return ;
 }
-
-
-
 
 int allowed_char_check(char **arg) //accept only digits/signs/space
 {
@@ -97,7 +119,7 @@ int allowed_char_check(char **arg) //accept only digits/signs/space
     return (0);
 }
 
-int dup_error_check(char **arg) //checks for duplicates
+int dup_error_check(char **arg) //checks for duplicates & limits
 {
     int     j;
     int     k;
