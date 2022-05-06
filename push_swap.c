@@ -72,7 +72,10 @@ void    parsing(t_list **lst, char **arg)
     return ;
 }
 
-int error_check(char **arg)
+
+
+
+int allowed_char_check(char **arg) //accept only digits/signs/space
 {
     int i;
     int j;
@@ -85,8 +88,6 @@ int error_check(char **arg)
         j = 0;
         while (arg[i][j] && j < size)
         {
-            if (ft_isalpha(arg[i][j]) == 1)
-                return (1);
             if (!ft_isnum(arg[i][j]) && !ft_isspace(arg[i][j]))
                 return (1);
             j++;
@@ -96,34 +97,56 @@ int error_check(char **arg)
     return (0);
 }
 
-int dup_error_check(char **arg)
+int dup_error_check(char **arg) //checks for duplicates
 {
-    int     i;
     int     j;
     int     k;
-    char    **tab;
     int     size;
 
-    i = 1;
-    while (arg[i])
+    j = 0;
+    while (arg[j])
     {
-        j = 0;
-        tab = ft_split(arg[i], ' ');
-        while (tab[j])
+        k = j + 1;
+        if (!ft_strcmp(arg[j], "2147483647"))
+            return (1);
+        if (!ft_strcmp(arg[j], "-2147483648"))
+            return (1);
+        while (arg[k])
         {
-            k = j + 1;
-            while (tab[k])
-            {
-                size = ft_max(ft_strlen(tab[j]), ft_strlen(tab[k]));
-                if (!ft_strncmp(tab[j], tab[k], size))
-                    return (1);
-                k++;
-            }
-            j++;
+            size = ft_max(ft_strlen(arg[j]), ft_strlen(arg[k]));
+            if (!ft_strncmp(arg[j], arg[k], size))
+                return (1);
+            k++;
         }
-        i++;
+        j++;
+    }
+    return (0);
+}
+
+int multi_check(char *arg)
+{
+    char    **tab;
+    
+    tab = ft_split(arg, ' ');
+    if (dup_error_check (tab) == 1)
+    {
+        free(tab);
+        return (1);
     }
     free(tab);
+    return (0);
+}
+
+int all_error_checks(int size, char **arg)
+{
+    if (size == 1)
+        return (2);
+    if (allowed_char_check(arg) == 1)
+        return (1);
+    if (size > 2 && dup_error_check(arg) == 1)
+        return (1);
+    if (size == 2 && multi_check(arg[1]) == 1)
+        return (1);
     return (0);
 }
 
@@ -131,15 +154,14 @@ int main(int argc, char **argv)
 {
     t_list *lst;
 
-    if (argc == 1)
-        return (0);
-    if (error_check(argv) == 1 || dup_error_check(argv) == 1)
+    if (all_error_checks(argc, argv) == 1)
         {
-            write (1, "Error\n", 6);
+            write(1, "Error\n", 6);
             return (0);
         }
+    else if (all_error_checks(argc, argv) == 2)
+        return (0);
     lst = NULL;
-
     parsing(&lst, argv);
     printf("the element of the list\n");   
     while (lst)

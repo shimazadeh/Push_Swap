@@ -35,11 +35,14 @@ int		ft_isspace(int c);
 int		ft_isnum(int c);
 int 	ft_max(int a, int b);
 
+int 	all_error_checks(int size, char **arg);
+int		allowed_char_check(char **arg);
 int		dup_error_check(char **arg);
-int		error_check(char **arg);
+int 	multi_check(char *arg);
 
 
 int		ft_strncmp(const char *s1, const char *s2, size_t n);
+int		ft_strcmp(const char *s1, const char *s2);
 
 char	**ft_split(char const *s, char c);
 
