@@ -19,3 +19,16 @@ int ft_max(int a, int b)
     else
         return (b);
 }
+
+void    ft_free_lst(t_list **lst)
+{
+    t_list  *tmp;
+    if(!*lst)
+        return;
+    while (*lst)
+    {
+        tmp = *lst;
+        *lst = (*lst)->next;
+        free(tmp);
+    }
+}

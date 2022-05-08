@@ -1,23 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strlen.c                                        :+:      :+:    :+:   */
+/*   ft_lst_remove.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: shabibol <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/02/28 04:26:34 by shabibol          #+#    #+#             */
-/*   Updated: 2022/03/01 17:32:04 by shabibol         ###   ########.fr       */
+/*   Created: 2022/05/08 23:56:28 by shabibol          #+#    #+#             */
+/*   Updated: 2022/05/08 23:56:30 by shabibol         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-size_t	ft_strlen(const char *s)
+void    ft_lst_remove(t_list **lst)
 {
-	int	n;
+    t_list  *temp;
+    t_list  **new_lst;
 
-	n = 0;
-	while (s[n] != '\0')
-		n++;
-	return (n);
+    if (!lst)
+        return ;
+    *lst = (*lst)->next;
+    while (lst)
+    {
+        temp = ft_lstnew((*lst)->content);
+        ft_lstadd_back(new_lst, temp);
+        (*lst) = (*lst)->next;
+    }
+    
 }

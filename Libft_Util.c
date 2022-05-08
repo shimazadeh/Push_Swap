@@ -40,9 +40,12 @@ int	ft_isspace(int c)
 	return (0);
 }
 
-int	ft_isalpha(int c)
+size_t	ft_strlen(const char *s)
 {
-	if ((c >= 'A' && c <= 'Z') || (c >= 'a' && c <= 'z'))
-		return (1);
-	return (0);
+	int	n;
+
+	n = 0;
+	while (s[n] != '\0')
+		n++;
+	return (n);
 }
