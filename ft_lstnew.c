@@ -12,11 +12,11 @@
 
 #include "push_swap.h"
 
-t_list	*ft_lstnew(int content)
+t_stack	*ft_lstnew(int content)
 {
-	t_list	*new;
+	t_stack	*new;
 
-	new = (t_list *)malloc(sizeof(t_list));
+	new = (t_stack *)malloc(sizeof(t_stack));
 	if (!new)
 		return (0);
 	new->content = content;

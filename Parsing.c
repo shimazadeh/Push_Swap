@@ -12,13 +12,13 @@
 
 #include "push_swap.h"
 
-void    parsing(t_list **lst, char **arg) 
+void    parsing(t_stack **lst, char **arg) 
 {
-    int     i;
-    int     j;
-    char    **tab;
-    int     buffer;
-    t_list  *new_lst;
+    int         i;
+    int         j;
+    char        **tab;
+    int         buffer;
+    t_stack     *new_lst;
 
     i = 1;
     while (arg[i])
@@ -89,11 +89,13 @@ int dup_error_check(char **arg) //checks for duplicates & limits
 int multi_check(char *arg) //if more than 1 argument
 {
     char    **tab;
+    int     size;
     
     tab = ft_split(arg, ' ');
+    size = ft_strlen_tab(tab);
     if (dup_error_check (tab) == 1)
-        return (free(tab), 1);
-    return (free(tab), 0);
+        return (ft_free(tab, size), 1);
+    return (ft_free(tab, size), 0);
 }
 
 int all_error_checks(int size, char **arg)// checks for all errors

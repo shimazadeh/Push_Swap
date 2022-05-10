@@ -49,3 +49,13 @@ size_t	ft_strlen(const char *s)
 		n++;
 	return (n);
 }
+
+int	ft_strlen_tab(char **tab)
+{
+	int	i;
+
+	i = 0;
+	while (tab[i])
+		i++;
+	return (i);
+}

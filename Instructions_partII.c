@@ -1,26 +1,34 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_lstsize.c                                       :+:      :+:    :+:   */
+/*   Instructions_partII.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: shabibol <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/02/28 04:13:11 by shabibol          #+#    #+#             */
-/*   Updated: 2022/02/28 04:13:13 by shabibol         ###   ########.fr       */
+/*   Created: 2022/05/10 12:50:47 by shabibol          #+#    #+#             */
+/*   Updated: 2022/05/10 12:50:49 by shabibol         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-int	ft_lstsize(t_stack *lst)
+void    swap_both_lst(t_stack **a, t_stack **b)
 {
-	int	i;
+    swap_lst(a);
+    swap_lst(b);
+    return ;
+}
 
-	i = 0;
-	while (lst)
-	{
-		lst = lst->next;
-		i++;
-	}
-	return (i);
+void    rotate_both_lst(t_stack **a, t_stack **b)
+{
+    rotate(a);
+    rotate(b);
+    return ;
+}
+
+void    rev_rotate_both_lst(t_stack **a, t_stack **b)
+{
+    reverse_rotate(a);
+    reverse_rotate(b);
+    return ;
 }

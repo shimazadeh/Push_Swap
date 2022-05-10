@@ -14,7 +14,7 @@
 
 int main(int argc, char **argv)
 {
-    t_list *lst;
+    t_stack *lst;
 
     if (all_error_checks(argc, argv) == 1)
         {
@@ -32,7 +32,9 @@ int main(int argc, char **argv)
         lst = lst->next;
     }
 */
-    swap_lst(&lst);
+//  swap_lst(&lst);
+//    rotate(&lst);
+    reverse_rotate(&lst);
 
     printf("after swap_a:\n");   
     while (lst)

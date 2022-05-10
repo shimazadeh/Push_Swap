@@ -20,9 +20,9 @@ int ft_max(int a, int b)
         return (b);
 }
 
-void    ft_free_lst(t_list **lst)
+void    ft_free_lst(t_stack **lst)
 {
-    t_list  *tmp;
+    t_stack  *tmp;
     if(!*lst)
         return;
     while (*lst)
@@ -31,4 +31,14 @@ void    ft_free_lst(t_list **lst)
         *lst = (*lst)->next;
         free(tmp);
     }
+}
+
+int ft_swap(int *first, int *second)
+{
+    int temp;
+
+    temp = *a;
+    *a = *b;
+    *b = temp
+    return (0);
 }
