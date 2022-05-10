@@ -34,12 +34,12 @@ int main(int argc, char **argv)
 */
 //  swap_lst(&lst);
 //    rotate(&lst);
-    reverse_rotate(&lst);
+//    reverse_rotate(&lst);
 
-    printf("after swap_a:\n");   
+    printf("rankings:\n");   
     while (lst)
     {
-        printf("%d\n", lst->content);
+        printf("%d\n", lst->rank);
         lst = lst->next;
     }
     ft_free_lst(&lst);

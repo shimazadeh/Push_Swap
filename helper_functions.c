@@ -32,13 +32,3 @@ void    ft_free_lst(t_stack **lst)
         free(tmp);
     }
 }
-
-int ft_swap(int *first, int *second)
-{
-    int temp;
-
-    temp = *a;
-    *a = *b;
-    *b = temp
-    return (0);
-}

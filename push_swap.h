@@ -23,7 +23,8 @@
 
 typedef struct s_stack
 {
-	int			content;
+	int				content;
+	int 			rank;
 	struct s_stack	*next;
 }t_stack;
 
@@ -42,7 +43,6 @@ int		ft_strcmp(const char *s1, const char *s2);
 char	**ft_split(char const *s, char c);
 
 size_t	ft_strlen(const char *s);
-
 ///end of libft functions
 
 int	ft_strlen_tab(char **tab);
@@ -57,8 +57,13 @@ int		dup_error_check(char **arg);
 int 	multi_check(char *arg);
 
 void	parsing(t_stack **lst, char **arg);
-//end of parsing
 
+//assigning ranks
+void    initialize_ranking(t_stack  **head_lst);
+void	pre_sorting(t_stack  **head_lst);
+
+
+//instructions
 void    swap(t_stack **lst);
 void    push(t_stack **head_to, t_stack **head_from);
 void    rotate(t_stack **head_lst);
@@ -67,6 +72,11 @@ void    swap_both_lst(t_stack **a, t_stack **b);
 void    rotate_both_lst(t_stack **a, t_stack **b);
 void    rev_rotate_both_lst(t_stack **a, t_stack **b);
 
+//quicksort functions
+int ft_swap(int *a, int *b);
+
+
+//lst functions 
 int		ft_lstsize(t_stack *lst);
 t_stack	*ft_lstnew(int content);
 t_stack	*ft_lstlast(t_stack *lst);

@@ -14,8 +14,8 @@
 
 void    swap_both_lst(t_stack **a, t_stack **b)
 {
-    swap_lst(a);
-    swap_lst(b);
+    swap(a);
+    swap(b);
     return ;
 }
 

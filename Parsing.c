@@ -35,6 +35,7 @@ void    parsing(t_stack **lst, char **arg)
         i++;
         ft_free(tab, j);
     }
+    pre_sorting(lst);
     return ;
 }
 

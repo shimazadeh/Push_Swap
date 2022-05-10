@@ -12,3 +12,20 @@
 
 #include "push_swap.h"
 
+
+int ft_swap(int *a, int *b)
+{
+    int temp;
+
+    temp = *a;
+    *a = *b;
+    *b = temp;
+    return (0);
+}
+/*
+int partition(t_stack **head_lst, low, high)
+{
+    int i;
+    int j;
+
+}*/
