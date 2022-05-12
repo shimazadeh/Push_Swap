@@ -12,17 +12,6 @@
 
 #include "push_swap.h"
 
-
-int ft_swap(int *a, int *b)
-{
-    int temp;
-
-    temp = *a;
-    *a = *b;
-    *b = temp;
-    return (0);
-}
-
 void    initialize_cost(t_stack  **head_lst)
 {
     int value;
@@ -77,25 +66,20 @@ void    find_median(t_stack **head_lst, t_struct *tab)
     t_stack *start;
     t_stack *compare;
     t_stack *stack;
-    int     a;
-    int     b;
     int     size;
     int     count;
 
     start = *head_lst;
-    compare = *head_lst;
+    compare = (*head_lst)->next;
     stack = *head_lst;
-    compare = compare->next;
     size = ft_lstsize(start);
     while (start)
     {
         count = 0;
-        a = start->content;
         compare = *head_lst;
         while (compare)
         {
-            b = compare->content;
-            if (b < a)
+            if (start->content < compare->content)
                 count++;
             compare = compare->next;
         }
@@ -107,6 +91,35 @@ void    find_median(t_stack **head_lst, t_struct *tab)
         }
         start = start->next;
     }
-    *head_lst = stack;
+}
+
+//broken it has issues with freeing the element
+
+void    move_to_stack_b(t_stack **head_a, t_stack **head_b, t_struct *tab)
+{
+    t_stack *a;
+    t_stack **b;
+    t_stack *temp;
+    t_stack *store_a;
+    t_stack *to_free;
+
+    a = *head_a;
+    store_a = *head_a;
+    b = (t_stack **)malloc(sizeof(t_stack));
+    while (a)
+    {
+        if (a->next->content != tab->min && a->next->content != tab->max && a->next->content != tab->median)
+        {
+            temp = ft_lstnew(a->content);
+            ft_lstadd_back(b, temp);
+            to_free = a;
+            a = a->next;
+            free(to_free);
+        }
+        else
+            a = a->next;
+    }
+    *head_a = store_a;
+    *head_b = *b;
     return ;
 }
