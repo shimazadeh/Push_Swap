@@ -25,10 +25,6 @@ typedef struct s_stack
 {
 	int				content;
 //	int 			rank;
-	int				cost1;
-	int				cost2;
-	int				cost3;
-	int				cost4;
 	struct s_stack	*next;
 }t_stack;
 
@@ -46,7 +42,6 @@ int			ft_isalpha(int c);
 int			ft_issign(int c);
 int			ft_isspace(int c);
 int			ft_isnum(int c);
-int 		ft_max(int a, int b);
 
 int			ft_strncmp(const char *s1, const char *s2, size_t n);
 int			ft_strcmp(const char *s1, const char *s2);
@@ -57,6 +52,7 @@ size_t		ft_strlen(const char *s);
 ///end of libft functions
 
 int			ft_strlen_tab(char **tab);
+int 		ft_max(int a, int b);
 
 char		**ft_free(char **dst, int i);
 void    	ft_free_lst(t_stack **lst);
@@ -85,24 +81,30 @@ void    	rotate_both_lst(t_stack **a, t_stack **b);
 void    	rev_rotate_both_lst(t_stack **a, t_stack **b);
 
 //quicksort functions
-void    	initialize_cost(t_stack  **head_lst);
 void    	find_median(t_stack **head_lst, t_struct *tab);
 void    	find_min_max(t_stack **head_lst, t_struct *tab);
 t_struct	*initialize_tab(t_struct  *tab);
 
 //one function to move everything else to stack B
-void    move_to_stack_b(t_stack **head_a, t_stack **head_b, t_struct *tab);
+void    	move_to_stack_b(t_stack **head_a, t_stack **head_b, t_struct *tab);
 
 //four methods combinations
+/*
 void    	method1(t_stack **head_a, t_stack **head_b, int flag);
 void    	method2(t_stack **head_a, t_stack **head_b, int flag);
 void    	method3(t_stack **head_a, t_stack **head_b);
-void    	method4(t_stack **head_a, t_stack **head_b);
+void    	method4(t_stack **head_a, t_stack **head_b);*/
 
 //calculating the cost of each element of the list
-int 		sort_check(t_stack **head_a);
+int 		sort_check(t_stack **head_a, int element);
+int 		calculate_cost_method1(t_stack **head_a, t_stack **head_b, int  element);
+int 		calculate_cost_method2(t_stack **head_a, t_stack **head_b, int  element);
+int 		calculate_cost_method3(t_stack **head_a, t_stack **head_b, int  element);
+int 		calculate_cost_method4(t_stack **head_a, t_stack **head_b, int  element);
 
-//main quicksort, that uses all functions
+//function to tell you which method is the most efficient
+
+//function to execute the method
 
 //lst functions 
 int			ft_lstsize(t_stack *lst);

@@ -12,7 +12,14 @@
 
 #include "push_swap.h"
 
-int sort_check(t_stack **head_a) //0 means sorted, 1 unsorted
+void    evaluate_all_costs(t_stack **head_a, t_stack **head_b)
+{
+  
+    
+}
+
+/*
+int sort_check(t_stack **head_a) //0 means sorted, 1 unsorted (sorted = ascending order)
 {
     t_stack *a;
     t_stack *compare;
@@ -24,11 +31,12 @@ int sort_check(t_stack **head_a) //0 means sorted, 1 unsorted
         compare = a->next;
         while(compare)
         {
-            if (a->content > compare->content)
+            if (a->content < compare->content)
                 return (1);
             compare = compare->next;
         }
         a = a->next;
     }
     return (0);
-}
+}*/
+

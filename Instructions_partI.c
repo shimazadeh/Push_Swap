@@ -27,23 +27,6 @@ void    swap(t_stack **lst)
     ft_lstadd_front(lst, second);
     return ;
 }
-/*
-void    swap_lst(t_stack **head_lst)
-{
-    t_stack     *first;
-    t_stack     *second;
-    t_stack     *stack;
-
-    if (!(*lst) || !((*lst)->next))
-        return ;
-    first = *head_lst;
-    second = first->next;
-    stack = second->next;
-    ft_lstadd_front(stack, first->content);
-    ft_lstadd_front(stack, second->content);
-    *head_lst = stack;
-    return ;
-}*/
 
 void    push(t_stack **head_to, t_stack **head_from)
 {

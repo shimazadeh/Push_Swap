@@ -12,23 +12,6 @@
 
 #include "push_swap.h"
 
-void    initialize_cost(t_stack  **head_lst)
-{
-    int value;
-
-    value = -1;
-    while ((*head_lst))
-    {
-        (*head_lst)->cost1 = value;
-        (*head_lst)->cost2 = value;
-        (*head_lst)->cost3 = value;
-        (*head_lst)->cost4 = value;
-        (*head_lst) = (*head_lst)->next;
-    }
-    return ;
-}
-
-
 t_struct    *initialize_tab(t_struct  *tab)
 {
     tab->min = -1;
@@ -93,7 +76,7 @@ void    find_median(t_stack **head_lst, t_struct *tab)
     }
 }
 
-//broken it has issues with freeing the element
+//****broken it has issues with freeing the element*****
 
 void    move_to_stack_b(t_stack **head_a, t_stack **head_b, t_struct *tab)
 {

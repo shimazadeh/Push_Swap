@@ -28,7 +28,7 @@ void    parsing(t_stack **lst, char **arg)
         while (tab[j])
         {
             buffer = ft_atoi(tab[j]);
-            new_lst = ft_lstnew(buffer);
+            new_lst = ft_lstnew(buffer); //*****there is a leak here*****
             ft_lstadd_back(lst, new_lst);
             j++;
         }
