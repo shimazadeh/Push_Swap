@@ -20,6 +20,22 @@ int ft_max(int a, int b)
         return (b);
 }
 
+int ft_min(int a, int b)
+{
+    if (a < b)
+        return (a);
+    else
+        return (b);
+}
+
+int ft_abs_value(int a, int b)
+{
+    if (a < b)
+        return ((b - a));
+    else
+        return ((a - b));
+}
+
 void    ft_free_lst(t_stack **lst)
 {
     t_stack  *tmp;

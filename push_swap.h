@@ -24,7 +24,10 @@
 typedef struct s_stack
 {
 	int				content;
-//	int 			rank;
+	int				cost1;
+	int				cost2;
+	int				cost3;
+	int				cost4;
 	struct s_stack	*next;
 }t_stack;
 
@@ -35,6 +38,12 @@ typedef struct s_struct
 	int 	median;
 }t_struct;
 
+typedef struct s_ind
+{
+	int	index_a;
+	int index_b;
+}t_ind;
+
 //libft functions
 int			ft_isdigit(int c);
 int			ft_atoi(const char *str);
@@ -42,17 +51,17 @@ int			ft_isalpha(int c);
 int			ft_issign(int c);
 int			ft_isspace(int c);
 int			ft_isnum(int c);
-
 int			ft_strncmp(const char *s1, const char *s2, size_t n);
+char		**ft_split(char const *s, char c);
+size_t		ft_strlen(const char *s);
+
+//helpers
+int 		ft_max(int a, int b);
+int 		ft_min(int a, int b);
+int 		ft_abs_value(int a, int b);
+int			ft_strlen_tab(char **tab);
 int			ft_strcmp(const char *s1, const char *s2);
 
-char		**ft_split(char const *s, char c);
-
-size_t		ft_strlen(const char *s);
-///end of libft functions
-
-int			ft_strlen_tab(char **tab);
-int 		ft_max(int a, int b);
 
 char		**ft_free(char **dst, int i);
 void    	ft_free_lst(t_stack **lst);
@@ -64,12 +73,6 @@ int			dup_error_check(char **arg);
 int 		multi_check(char *arg);
 
 void		parsing(t_stack **lst, char **arg);
-
-//assigning ranks
-/*
-void    initialize_ranking(t_stack  **head_lst);
-void	pre_sorting(t_stack  **head_lst);
-*/
 
 //instructions
 void    	swap(t_stack **lst);
@@ -89,29 +92,34 @@ t_struct	*initialize_tab(t_struct  *tab);
 void    	move_to_stack_b(t_stack **head_a, t_stack **head_b, t_struct *tab);
 
 //four methods combinations
-/*
-void    	method1(t_stack **head_a, t_stack **head_b, int flag);
-void    	method2(t_stack **head_a, t_stack **head_b, int flag);
-void    	method3(t_stack **head_a, t_stack **head_b);
-void    	method4(t_stack **head_a, t_stack **head_b);*/
-
-//calculating the cost of each element of the list
-int 		sort_check(t_stack **head_a, int element);
 int 		calculate_cost_method1(t_stack **head_a, t_stack **head_b, int  element);
 int 		calculate_cost_method2(t_stack **head_a, t_stack **head_b, int  element);
 int 		calculate_cost_method3(t_stack **head_a, t_stack **head_b, int  element);
 int 		calculate_cost_method4(t_stack **head_a, t_stack **head_b, int  element);
 
-//function to tell you which method is the most efficient
+//calculating the cost of each element of the list
+void    	calculate_all_costs(t_stack **head_a, t_stack **head_b)
+t_stack 	lowest_cost_element(t_stack  **head_b)
+int 		lowest_cost(t_stack  **head_b)
+void    	initialize_costs(t_stack **head_b)
 
 //function to execute the method
+void    	execution_function(t_stack **head_a, t_stack **head_b);
+void    	update_index(t_stack **head_a, t_stack **head_b, t_ind index);
+void    	execute_method1(int index_a, int index_b, t_stack **head_a, t_stack **head_b);
+void    	execute_method2(int index_a, int index_b, t_stack **head_a, t_stack **head_b);
+void    	execute_method3(int index_a, int index_b, t_stack **head_a, t_stack **head_b);
+void    	execute_method4(int index_a, int index_b, t_stack **head_a, t_stack **head_b);
 
 //lst functions 
 int			ft_lstsize(t_stack *lst);
 t_stack		*ft_lstnew(int content);
 t_stack		*ft_lstlast(t_stack *lst);
-t_stack		*ft_lstmap(t_stack *lst, void *(*f)(void *), void (*del)(void *));
 void		ft_lstadd_back(t_stack **lst, t_stack *new);
 void		ft_lstadd_front(t_stack **lst, t_stack *new);
+
+
+//not sure if I need it 
+int 		sort_check(t_stack **head_a, int element);
 
 #endif
