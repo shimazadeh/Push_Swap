@@ -16,55 +16,22 @@ void    execution_function(t_stack **head_a, t_stack **head_b)
 {
     t_stack *a;
     t_stack *b;
-    t_stack *element;
     t_ind   *index;
 
     b = *head_b;
-    b_copy = *head_b;
     a = *head_a;
-    a_copy = *head_a;
     while (b)
     {
-        calculate_all_costs(head_a, head_b);
-        element = lowest_cost_element(head_b);
-        min = lowest_cost(head_b);
-        update_index(head_a, head_b, index);
-        if (element->cost1 == min)
+        initialize_costs_index(head_b, index);
+        calculate_all_costs(head_a, head_b, index);
+        if (index->method_num == 1)
             execute_method1(index->index_a, index->index_b, head_a, head_b);
-        if (element->cost2 == min)
+        if (index->method_num == 2)
             execute_method2(index->index_a, index->index_b, head_a, head_b);
-        if (element->cost3 == min)
+        if (index->method_num == 3)
             execute_method3(index->index_a, index->index_b, head_a, head_b);
-        if (element->cost4 == min)
+        if (index->method_num == 4)
             execute_method4(index->index_a, index->index_b, head_a, head_b);
-    }
-    return ;
-}
-
-void    update_index(t_stack **head_a, t_stack **head_b, t_ind index)
-{
-    int i;
-    int j;
-    t_stack *b_copy;
-    t_stack *a_copy;
-
-    a_copy = *head_a;
-    b_copy = *head_b;
-    i = 0;
-    while (b_copy->content)
-    {
-        j = 0;
-        while (a_copy->content)
-        {
-            if (b_copy->content > a_copy->content && b_copy->next->content < a_copy->next->content)
-            {
-                index->index_a = j;
-                index->index_b = i;
-                return ;
-            }
-            j++;
-        }
-        i++;
     }
     return ;
 }
@@ -101,8 +68,8 @@ void    execute_method2(int index_a, int index_b, t_stack **head_a, t_stack **he
 
     i = 0;
     j = 0;
-    a = ft_lstsize(head_a) - index_a;
-    b = ft_lstsize(head_b) - index_b;
+    a = ft_lstsize(*head_a) - index_a;
+    b = ft_lstsize(*head_b) - index_b;
     while (i <= ft_min(a, b))
     {
         rev_rotate_both_lst(head_a, head_b);
@@ -131,7 +98,7 @@ void    execute_method3(int index_a, int index_b, t_stack **head_a, t_stack **he
         rotate(head_a);
         i++;
     }
-    while (j < (ft_lstsize(head_b) - index_b))
+    while (j < (ft_lstsize(*head_b) - index_b))
     {
         reverse_rotate(head_b);
         j++;
@@ -151,7 +118,7 @@ void    execute_method4(int index_a, int index_b, t_stack **head_a, t_stack **he
         rotate(head_b);
         i++;
     }
-    while (j < (ft_lstsize(head_a) - index_a))
+    while (j < (ft_lstsize(*head_a) - index_a))
     {
         reverse_rotate(head_a);
         j++;

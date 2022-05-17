@@ -40,6 +40,8 @@ typedef struct s_struct
 
 typedef struct s_ind
 {
+	int	lowest_cost;
+	int method_num;
 	int	index_a;
 	int index_b;
 }t_ind;
@@ -92,20 +94,18 @@ t_struct	*initialize_tab(t_struct  *tab);
 void    	move_to_stack_b(t_stack **head_a, t_stack **head_b, t_struct *tab);
 
 //four methods combinations
-int 		calculate_cost_method1(t_stack **head_a, t_stack **head_b, int  element);
-int 		calculate_cost_method2(t_stack **head_a, t_stack **head_b, int  element);
-int 		calculate_cost_method3(t_stack **head_a, t_stack **head_b, int  element);
-int 		calculate_cost_method4(t_stack **head_a, t_stack **head_b, int  element);
+int 		calculate_cost_method1(int index_a, int index_b, t_stack **head_a, t_stack **head_b);
+int 		calculate_cost_method2(int index_a, int index_b, t_stack **head_a, t_stack **head_b);
+int 		calculate_cost_method3(int index_a, int index_b, t_stack **head_a, t_stack **head_b);
+int 		calculate_cost_method4(int index_a, int index_b, t_stack **head_a, t_stack **head_b);
 
 //calculating the cost of each element of the list
-void    	calculate_all_costs(t_stack **head_a, t_stack **head_b)
-t_stack 	lowest_cost_element(t_stack  **head_b)
-int 		lowest_cost(t_stack  **head_b)
-void    	initialize_costs(t_stack **head_b)
+void    	calculate_all_costs(t_stack **head_a, t_stack **head_b, t_ind *index);
+void    	update_lowest_cost(t_stack *head_b, t_ind *index, int index_a, int index_b);
+void    	initialize_costs_index(t_stack **head_b, t_ind *index);
 
 //function to execute the method
 void    	execution_function(t_stack **head_a, t_stack **head_b);
-void    	update_index(t_stack **head_a, t_stack **head_b, t_ind index);
 void    	execute_method1(int index_a, int index_b, t_stack **head_a, t_stack **head_b);
 void    	execute_method2(int index_a, int index_b, t_stack **head_a, t_stack **head_b);
 void    	execute_method3(int index_a, int index_b, t_stack **head_a, t_stack **head_b);

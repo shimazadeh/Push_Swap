@@ -62,8 +62,8 @@ int calculate_cost_method2(int index_a, int index_b, t_stack **head_a, t_stack *
 
     i = 0;
     j = 0;
-    a = ft_lstsize(head_a) - index_a;
-    b = ft_lstsize(head_b) - index_b;
+    a = ft_lstsize(*head_a) - index_a;
+    b = ft_lstsize(*head_b) - index_b;
     while (i <= ft_min(a, b))
     {
         rev_rotate_both_lst(head_a, head_b);
@@ -92,7 +92,7 @@ int calculate_cost_method3(int index_a, int index_b, t_stack **head_a, t_stack *
         rotate(head_a);
         i++;
     }
-    while (j < (ft_lstsize(head_b) - index_b))
+    while (j < (ft_lstsize(*head_b) - index_b))
     {
         reverse_rotate(head_b);
         j++;
@@ -112,7 +112,7 @@ int calculate_cost_method4(int index_a, int index_b, t_stack **head_a, t_stack *
         rotate(head_b);
         i++;
     }
-    while (j < (ft_lstsize(head_a) - index_a))
+    while (j < (ft_lstsize(*head_a) - index_a))
     {
         reverse_rotate(head_a);
         j++;

@@ -12,20 +12,19 @@
 
 #include "push_swap.h"
 
-void    calculate_all_costs(t_stack **head_a, t_stack **head_b)
+void    calculate_all_costs(t_stack **head_a, t_stack **head_b, t_ind *index)
 {
-    int       i;
-    int       j;
-    t_stack   *b;
-    t_stack   *a;
+    int         i;
+    int         j;
+    t_stack     *b;
+    t_stack     *a;
 
     j = 0;
     b = *head_b;
-    initialize_costs(head_b);
     while (b->content)
     {
         i = 0;
-        a = *head_a
+        a = *head_a;
         while (a->content)
         {
             if (b->content > a->content && b->next->content < a->next->content)
@@ -34,8 +33,7 @@ void    calculate_all_costs(t_stack **head_a, t_stack **head_b)
                 b->cost2 = calculate_cost_method2(j, i, head_a, head_b);
                 b->cost3 = calculate_cost_method3(j, i, head_a, head_b);
                 b->cost4 = calculate_cost_method4(j, i, head_a, head_b);
-                //what if you update the index structure here...??
-                //each content has two extra nodes index_a and index_b??
+                update_lowest_cost(*head_b, index, i, j);
             }
             a = a->next;
             i++;
@@ -46,67 +44,54 @@ void    calculate_all_costs(t_stack **head_a, t_stack **head_b)
     return ;
 }
 
-t_stack lowest_cost_element(t_stack  **head_b)
+void    update_lowest_cost(t_stack *head_b, t_ind *index, int index_a, int index_b)
 {
-    int     cost;
-    int     temp1;
-    t_stack *res;
-
-    cost = 2147483647;
-    while (head_b->content)
+    if (head_b->cost1 < index->lowest_cost)
     {
-        if (head_b->cost1 < head_b->cost2)
-            temp1 = head_b->cost1;
-        else
-            temp1 = head_b->cost2;
-        if (head_b->cost3 < temp1)
-            temp1 = head_b->cost3;
-        if (head_b->cost4 < temp1)
-            temp1 = head_b->cost4;
-        if (temp1 < cost)
-        {    
-            cost = temp1;
-            res = *head_b;
-        }
-        head_b = head_b->next;
+        index->lowest_cost = head_b->cost1;
+        index->method_num = 1;
+        index->index_b = index_b;
+        index->index_a = index_a;
     }
-    return (res);
+    if (head_b->cost2 < index->lowest_cost)
+    {
+        index->lowest_cost = head_b->cost2;
+        index->method_num = 2;
+        index->index_b = index_b;
+        index->index_a = index_a;
+    }
+    if (head_b->cost3 < index->lowest_cost)
+    {
+        index->lowest_cost = head_b->cost3;
+        index->method_num = 3;
+        index->index_b = index_b;
+        index->index_a = index_a;
+    }
+    if (head_b->cost4 < index->lowest_cost)
+    {
+        index->lowest_cost = head_b->cost4;
+        index->method_num = 4;
+        index->index_b = index_b;
+        index->index_a = index_a;
+    }
+    return ;
 }
 
-int lowest_cost(t_stack  **head_b)
-{
-    int     cost;
-    int     temp1;
-
-    cost = 2147483647;
-    while (head_b->content)
-    {
-        if (head_b->cost1 < head_b->cost2)
-            temp1 = head_b->cost1;
-        else
-            temp1 = head_b->cost2;
-        if (head_b->cost3 < temp1)
-            temp1 = head_b->cost3;
-        if (head_b->cost4 < temp1)
-            temp1 = head_b->cost4;
-        if (temp1 < cost)
-            cost = temp1;
-        head_b = head_b->next;
-    }
-    return (cost);
-}
-
-void    initialize_costs(t_stack **head_b)
+void    initialize_costs_index(t_stack **head_b, t_ind *index)
 {
     t_stack *b;
 
     b = *head_b;
+    index->lowest_cost = 2147483647;
+    index->method_num = -1;
+    index->index_a = -1;
+    index->index_b = -1;
     while (b->content)
     {
-        b->cost1 = 0;
-        b->cost2 = 0;
-        b->cost3 = 0;
-        b->cost4 = 0;
+        b->cost1 = -1;
+        b->cost2 = -1;
+        b->cost3 = -1;
+        b->cost4 = -1;
         b = b->next;
     }
     return ;

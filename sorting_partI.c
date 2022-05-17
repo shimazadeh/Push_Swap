@@ -76,25 +76,21 @@ void    find_median(t_stack **head_lst, t_struct *tab)
     }
 }
 
-//****broken it has issues with freeing the element*****
-
 void    move_to_stack_b(t_stack **head_a, t_stack **head_b, t_struct *tab)
 {
     t_stack *a;
-    t_stack **b;
     t_stack *temp;
     t_stack *store_a;
     t_stack *to_free;
 
     a = *head_a;
     store_a = *head_a;
-    b = (t_stack **)malloc(sizeof(t_stack));
-    while (a)
+    while (a->next)
     {
-        if (a->next->content != tab->min && a->next->content != tab->max && a->next->content != tab->median)
+        if (a->content != tab->min && a->content != tab->max && a->content != tab->median)
         {
             temp = ft_lstnew(a->content);
-            ft_lstadd_back(b, temp);
+            ft_lstadd_back(head_b, temp);
             to_free = a;
             a = a->next;
             free(to_free);
@@ -103,6 +99,19 @@ void    move_to_stack_b(t_stack **head_a, t_stack **head_b, t_struct *tab)
             a = a->next;
     }
     *head_a = store_a;
-    *head_b = *b;
     return ;
+}
+
+void    remove_nodes(t_stack **head_a, t_stack **head_b, t_struct *tab)
+{
+    t_stack *a;
+    t_stack *b;
+
+    while (a->next)
+    {
+        if (a->next->content == tab->min || a->next->content == tab->max || a->next->content == tab->median)
+        {
+            
+        }
+    }
 }
