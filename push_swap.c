@@ -11,6 +11,14 @@
 /* ************************************************************************** */
 #include "push_swap.h"
 
+void    display(t_stack *b)
+{
+    while (b)
+    {
+        printf("%d\n", b->content);
+        b = b->next;
+    }
+}
 
 int main(int argc, char **argv)
 {
@@ -35,20 +43,20 @@ int main(int argc, char **argv)
     printf("the min is %d, the max is %d, the median is %d\n", tab->min, tab->max, tab->median);
     
     move_to_stack_b(&a, &b, tab);
-    
-    printf("the a stack:\n");
-    while (a)
-    {
-        printf("%d\n", a->content);
-        a = a->next;
-    }
+//    execution_function(&a, &b);
+    printf("the a stack before:\n");
+    display(a);
 
-    printf("the b stack:\n");   
-    while (b)
-    {
-        printf("%d\n", b->content);
-        b = b->next;
-    }
+    printf("the b stack before:\n");
+    display(b);
+
+    execute_method1(0, 1, &a, &b);
+    printf("the a stack front to back:\n");
+    display(a);
+
+    printf("the b stack after:\n");
+    display(b);
+
     ft_free_lst(&a);
     return (0);
 }

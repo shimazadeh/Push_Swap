@@ -24,4 +24,5 @@ void	ft_lstadd_back(t_stack **lst, t_stack *new)
 	}
 	repl = ft_lstlast(*lst);
 	repl->next = new;
+	new->previous = repl;
 }

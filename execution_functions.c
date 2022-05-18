@@ -26,12 +26,13 @@ void    execution_function(t_stack **head_a, t_stack **head_b)
         calculate_all_costs(head_a, head_b, index);
         if (index->method_num == 1)
             execute_method1(index->index_a, index->index_b, head_a, head_b);
-        if (index->method_num == 2)
+        else if (index->method_num == 2)
             execute_method2(index->index_a, index->index_b, head_a, head_b);
-        if (index->method_num == 3)
+        else if (index->method_num == 3)
             execute_method3(index->index_a, index->index_b, head_a, head_b);
-        if (index->method_num == 4)
+        else if (index->method_num == 4)
             execute_method4(index->index_a, index->index_b, head_a, head_b);
+        push(head_a, head_b);
     }
     return ;
 }
@@ -43,7 +44,7 @@ void    execute_method1(int index_a, int index_b, t_stack **head_a, t_stack **he
 
     i = 0;
     j = 0;
-    while (i <= ft_min(index_a, index_b))
+    while (i < ft_min(index_a, index_b))
     {
         rotate_both_lst(head_a, head_b);
         i++;

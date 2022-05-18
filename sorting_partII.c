@@ -21,11 +21,11 @@ void    calculate_all_costs(t_stack **head_a, t_stack **head_b, t_ind *index)
 
     j = 0;
     b = *head_b;
-    while (b->content)
+    while (b->next)
     {
         i = 0;
         a = *head_a;
-        while (a->content)
+        while (a->next)
         {
             if (b->content > a->content && b->next->content < a->next->content)
             {
@@ -86,7 +86,7 @@ void    initialize_costs_index(t_stack **head_b, t_ind *index)
     index->method_num = -1;
     index->index_a = -1;
     index->index_b = -1;
-    while (b->content)
+    while (b)
     {
         b->cost1 = -1;
         b->cost2 = -1;
