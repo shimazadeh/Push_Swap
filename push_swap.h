@@ -106,7 +106,7 @@ void    			update_lowest_cost(t_stack *head_b, t_ind *index, int index_a, int in
 void    			initialize_costs_index(t_stack **head_b, t_ind *index);
 
 //function to execute the method
-void    			execution_function(t_stack **head_a, t_stack **head_b);
+void    			execution_function(t_stack **head_a, t_stack **head_b, t_ind *index);
 void    			execute_method1(int index_a, int index_b, t_stack **head_a, t_stack **head_b);
 void    			execute_method2(int index_a, int index_b, t_stack **head_a, t_stack **head_b);
 void    			execute_method3(int index_a, int index_b, t_stack **head_a, t_stack **head_b);
@@ -122,5 +122,7 @@ void				ft_lstadd_front(t_stack **lst, t_stack *new);
 
 //not sure if I need it 
 int 				sort_check(t_stack **head_a, int element);
+
+void    			display(t_stack *b);
 
 #endif

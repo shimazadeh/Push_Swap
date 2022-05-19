@@ -50,7 +50,7 @@ void    push(t_stack **head_to, t_stack **head_from)
     else
     {
         temp->next = to;
-        *head_to = to;
+        *head_to = temp;
     }
     return ;
 }
@@ -77,7 +77,7 @@ void    rotate(t_stack **head_lst)
 
 void    reverse_rotate(t_stack **head_lst)
 {
-    t_stack  *previous;
+    t_stack  *prev;
     t_stack  *last;
     t_stack  *stack;
 
@@ -87,11 +87,11 @@ void    reverse_rotate(t_stack **head_lst)
     last = stack;
     while (last->next)
     {
-        previous = last;
+        prev = last;
         last = last->next;
     }
     last->next = stack;
-    previous->next = NULL; 
+    prev->next = NULL; 
     *head_lst = last;
     return ;
 }

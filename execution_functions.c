@@ -12,11 +12,10 @@
 
 #include "push_swap.h"
 
-void    execution_function(t_stack **head_a, t_stack **head_b)
+void    execution_function(t_stack **head_a, t_stack **head_b, t_ind *index)
 {
     t_stack *a;
     t_stack *b;
-    t_ind   *index;
 
     b = *head_b;
     a = *head_a;
@@ -71,7 +70,7 @@ void    execute_method2(int index_a, int index_b, t_stack **head_a, t_stack **he
     j = 0;
     a = ft_lstsize(*head_a) - index_a;
     b = ft_lstsize(*head_b) - index_b;
-    while (i <= ft_min(a, b))
+    while (i < ft_min(a, b))
     {
         rev_rotate_both_lst(head_a, head_b);
         i++;
