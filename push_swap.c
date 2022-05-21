@@ -16,12 +16,11 @@ void    display(t_stack *b)
     while (b)
     {
         printf("the content is: %d\n", b->content);
-        /*
         printf("the cost1 is: %d\n", b->cost1);
         printf("the cost2 is: %d\n", b->cost2);
         printf("the cost3 is: %d\n", b->cost3);
         printf("the cost4 is: %d\n", b->cost4);
-        printf("\n");*/
+        printf("\n");
         b = b->next;
     }
 }
@@ -34,12 +33,12 @@ int main(int argc, char **argv)
     t_ind       *index;
 
     a = (t_stack *)malloc(sizeof(t_struct));
-    b = (t_stack *)malloc(sizeof(t_struct));;
+    b = (t_stack *)malloc(sizeof(t_struct));
     tab = (t_struct *)malloc(sizeof(t_struct));
     index = (t_ind *)malloc(sizeof(t_ind));
     a = NULL;
     b = NULL;
-    
+
     if (all_error_checks(argc, argv) == 1)
         {
             write(1, "Error\n", 6);
@@ -54,23 +53,28 @@ int main(int argc, char **argv)
     find_median(&a, tab);
 
     printf("the min is %d, the max is %d, the median is %d\n", tab->min, tab->max, tab->median);
-    
+        
+    printf("the content of stack a before move:\n");
+    display(a);
+
     move_to_stack_b(&a, &b, tab);
 
-    printf("the content of stack a before:\n");
+    printf("the content of stack a after sorting:\n");
     display(a);
-    printf("the content of stack b before:\n");
+    printf("the content of stack b after sorting:\n");
     display(b);
 
     execution_function(&a, &b, index);
 
-
-    printf("the content of stack a after:\n");
+    printf("the final version of stack a:\n");
     display(a);
-    printf("the content of stack b after:\n");
+    printf("the final version of stack b:\n");
     display(b);
 
-
     ft_free_lst(&a);
+    ft_free_lst(&b);
+    free(tab);
+    free(index);
+
     return (0);
 }

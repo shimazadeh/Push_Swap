@@ -74,64 +74,49 @@ void    find_median(t_stack **head_lst, t_struct *tab)
     }
 }
 
-//still has a problem// 
-void    move_to_stack_b(t_stack **head_a, t_stack **head_b, t_struct *tab)
-{
-    t_stack *a;
-    t_stack *temp;
-    t_stack *to_free;
-    t_stack *prev;
-
-    a = *head_a;
-    prev = NULL;
-    while (a)
-    {
-        if (a->content != tab->min && a->content != tab->max && a->content != tab->median)
-        {
-            temp = ft_lstnew(a->content); //**leak here for ft_lstnew***
-            ft_lstadd_back(head_b, temp);
-            to_free = a;
-            prev = a->previous;
-            a = a->next;
-            if (prev)
-                prev->next = a;
-            else
-            {
-                a->previous = NULL;
-                *head_a = a;
-            }
-            free(to_free);
-        }
-        else
-            a = a->next;
-    }
-    return ;
-}
-
-/*
 void    move_to_stack_b(t_stack **head_a, t_stack **head_b, t_struct *tab)
 {
     t_stack **a;
     t_stack **b;
-    t_stack *c;
+    int     size;
 
     a = head_a;
     b = head_b;
-    while ((*a))
+    size = ft_lstsize(*a);
+
+    while (size > 0)
     {
         if ((*a)->content != tab->min && (*a)->content != tab->max && (*a)->content != tab->median)
-            {
-                c = (*a)->next;
-                push(b, a);
-//                *a = (*a)->next;
-                a = &c;
-            }
+            push(b, a);
         else
-            *a = (*a)->next;
+            rotate(a);
+        size--;
     }
-//    while ((*a)->previous)
-//        (*a) = (*a)->previous;
-//    head_a = a;
+    initial_sort_stack_a(head_a, tab);
     return ;
 }
-*/
+
+void    initial_sort_stack_a(t_stack **head_a, t_struct *tab)
+{
+    t_stack **a;
+
+    a = head_a;
+    if ((*a)->content == tab->max && (*a)->next->content == tab->min)
+        rotate(a);
+    else if ((*a)->content == tab->max && (*a)->next->content == tab->median)
+    {
+        swap(a);    
+        reverse_rotate(a);
+    }
+    else if ((*a)->content == tab->median && (*a)->next->content == tab->min)
+        swap(a);
+    else if ((*a)->content == tab->median && (*a)->next->content == tab->max)
+        reverse_rotate(a);
+    else if ((*a)->content == tab->min && (*a)->next->content == tab->max)
+    {
+        rotate(a);
+        swap(a);
+        reverse_rotate(a);
+    }
+    return ;
+}

@@ -23,6 +23,12 @@ void    execution_function(t_stack **head_a, t_stack **head_b, t_ind *index)
     {
         initialize_costs_index(head_b, index);
         calculate_all_costs(head_a, head_b, index);
+        printf("*****************\n");
+        printf("stack b is \n");
+        display(*head_b);
+        printf("stack a is \n");
+        display(*head_a);
+        printf("*****************\n");
         if (index->method_num == 1)
             execute_method1(index->index_a, index->index_b, head_a, head_b);
         else if (index->method_num == 2)

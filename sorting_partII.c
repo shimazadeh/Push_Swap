@@ -20,6 +20,9 @@ void    calculate_all_costs(t_stack **head_a, t_stack **head_b, t_ind *index)
     t_stack     *a;
 
     j = 0;
+   
+//    if (!*head_b || !*head_a);
+//        return ;
     b = *head_b;
     while (b)
     {
@@ -35,6 +38,7 @@ void    calculate_all_costs(t_stack **head_a, t_stack **head_b, t_ind *index)
             if (a->next)
             {
                 a = a->next;
+                i++;
                 while (a && b->content > a->content)
                 {
                     a = a->next;

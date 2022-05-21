@@ -36,7 +36,7 @@ int ft_abs_value(int a, int b)
         return ((a - b));
 }
 
-void    ft_free_lst(t_stack **lst)
+void    ft_free_lst(t_stack **lst)// your leaks are from here, maybe send *lst only
 {
     t_stack  *tmp;
     if(!*lst)

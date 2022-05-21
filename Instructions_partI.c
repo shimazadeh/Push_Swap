@@ -62,7 +62,7 @@ void    rotate(t_stack **head_lst)
     t_stack  *stack;
 
     stack = *head_lst;
-    if (!stack)
+    if (!stack || ft_lstsize(*head_lst) == 1)
         return ;
     first = stack;
     stack = stack->next;
@@ -82,7 +82,7 @@ void    reverse_rotate(t_stack **head_lst)
     t_stack  *stack;
 
     stack = *head_lst;
-    if (!stack)
+    if (!stack || ft_lstsize(*head_lst) == 1)
         return ;
     last = stack;
     while (last->next)
