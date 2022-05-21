@@ -92,7 +92,7 @@ void    			find_min_max(t_stack **head_lst, t_struct *tab);
 t_struct			*initialize_tab(t_struct  *tab);
 
 //one function to move everything else to stack B
-void    			move_to_stack_b(t_stack **head_a, t_stack **head_b, t_struct *tab);
+void				move_to_stack_b(t_stack **head_a, t_stack **head_b, t_struct *tab);
 
 //four methods combinations
 int 				calculate_cost_method1(int index_a, int index_b, t_stack **head_a, t_stack **head_b);

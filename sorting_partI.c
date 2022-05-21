@@ -83,6 +83,7 @@ void    move_to_stack_b(t_stack **head_a, t_stack **head_b, t_struct *tab)
     t_stack *prev;
 
     a = *head_a;
+    prev = NULL;
     while (a)
     {
         if (a->content != tab->min && a->content != tab->max && a->content != tab->median)
@@ -106,3 +107,31 @@ void    move_to_stack_b(t_stack **head_a, t_stack **head_b, t_struct *tab)
     }
     return ;
 }
+
+/*
+void    move_to_stack_b(t_stack **head_a, t_stack **head_b, t_struct *tab)
+{
+    t_stack **a;
+    t_stack **b;
+    t_stack *c;
+
+    a = head_a;
+    b = head_b;
+    while ((*a))
+    {
+        if ((*a)->content != tab->min && (*a)->content != tab->max && (*a)->content != tab->median)
+            {
+                c = (*a)->next;
+                push(b, a);
+//                *a = (*a)->next;
+                a = &c;
+            }
+        else
+            *a = (*a)->next;
+    }
+//    while ((*a)->previous)
+//        (*a) = (*a)->previous;
+//    head_a = a;
+    return ;
+}
+*/
