@@ -48,28 +48,37 @@ int main(int argc, char **argv)
         return (0);
 
     parsing(&a, argv);
+    //a function to check if its already sorted//
     initialize_tab(tab);
     find_min_max(&a, tab);
     find_median(&a, tab);
-
+/*
     printf("the min is %d, the max is %d, the median is %d\n", tab->min, tab->max, tab->median);
         
     printf("the content of stack a before move:\n");
     display(a);
-
+*/
     move_to_stack_b(&a, &b, tab);
-
+/*
     printf("the content of stack a after sorting:\n");
     display(a);
     printf("the content of stack b after sorting:\n");
     display(b);
-
+*/
     execution_function(&a, &b, index);
-
-    printf("the final version of stack a:\n");
+/*
+    printf("the stack a after execution:\n");
     display(a);
-    printf("the final version of stack b:\n");
+    printf("the stack b after execution:\n");
     display(b);
+*/
+    final_check(&a, tab);
+/*
+    printf("the stack a after final check:\n");
+    display(a);
+    printf("the stack b after final check:\n");
+    display(b);
+*/
 
     ft_free_lst(&a);
     ft_free_lst(&b);

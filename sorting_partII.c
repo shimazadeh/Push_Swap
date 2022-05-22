@@ -20,9 +20,6 @@ void    calculate_all_costs(t_stack **head_a, t_stack **head_b, t_ind *index)
     t_stack     *a;
 
     j = 0;
-   
-//    if (!*head_b || !*head_a);
-//        return ;
     b = *head_b;
     while (b)
     {
@@ -121,5 +118,65 @@ void    initialize_costs_index(t_stack **head_b, t_ind *index)
     index->method_num = -1;
     index->index_a = -1;
     index->index_b = -1;
+    return ;
+}
+
+void    final_check(t_stack **head_a, t_struct *tab)
+{
+    t_stack *a;
+    int     position;
+    int     len;
+    int     count;
+
+    a = *head_a;
+    position = 0;
+    len = ft_lstsize(*head_a);
+    count = 0;
+    if ((a)->content != tab->min)
+    {
+        while ((a) && (a)->content != tab->min)
+        {
+            position++;
+            (a) = (a)->next;
+        }
+        if (len % 2 != 0) //length is odd 
+        {
+            if (position > len/2)//min is closer to the end of the stack 
+            {
+                while(count != (len - position))
+                {
+                    reverse_rotate(head_a);
+                    count++;
+                }
+            }
+            else //min is closer to the top of the stack
+            {
+                while (count != position)
+                {
+                    rotate(head_a);
+                    count++;
+                }
+            }
+        }
+        else //length is even 
+        {
+            if (position >= len/2)//min is closer to the end of the stack 
+            {
+                while(count != (len - position))
+                {    
+                    count++;
+                    reverse_rotate(head_a);
+                }
+            }
+            else //min is closer to the top of the stack
+            {
+                while (count != position)
+                {
+                    rotate(head_a);
+                    count++;
+                }
+            }
+        }
+    }
     return ;
 }

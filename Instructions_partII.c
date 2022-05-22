@@ -16,6 +16,7 @@ void    swap_both_lst(t_stack **a, t_stack **b)
 {
     swap(a);
     swap(b);
+    printf("ss\n");
     return ;
 }
 
@@ -23,6 +24,7 @@ void    rotate_both_lst(t_stack **a, t_stack **b)
 {
     rotate(a);
     rotate(b);
+    printf("rr\n");
     return ;
 }
 
@@ -30,5 +32,6 @@ void    rev_rotate_both_lst(t_stack **a, t_stack **b)
 {
     reverse_rotate(a);
     reverse_rotate(b);
+    printf("rrr\n");
     return ;
 }

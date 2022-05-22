@@ -14,21 +14,21 @@
 
 void    execution_function(t_stack **head_a, t_stack **head_b, t_ind *index)
 {
-    t_stack *a;
+/*    t_stack *a;
     t_stack *b;
 
     b = *head_b;
-    a = *head_a;
-    while (b)
+    a = *head_a;*/
+    while (*head_b)
     {
         initialize_costs_index(head_b, index);
         calculate_all_costs(head_a, head_b, index);
-        printf("*****************\n");
+/*        printf("*****************\n");
         printf("stack b is \n");
         display(*head_b);
         printf("stack a is \n");
         display(*head_a);
-        printf("*****************\n");
+        printf("*****************\n");*/
         if (index->method_num == 1)
             execute_method1(index->index_a, index->index_b, head_a, head_b);
         else if (index->method_num == 2)
@@ -38,6 +38,7 @@ void    execution_function(t_stack **head_a, t_stack **head_b, t_ind *index)
         else if (index->method_num == 4)
             execute_method4(index->index_a, index->index_b, head_a, head_b);
         push(head_a, head_b);
+        printf("pa\n");
     }
     return ;
 }
@@ -57,9 +58,15 @@ void    execute_method1(int index_a, int index_b, t_stack **head_a, t_stack **he
     while (j < ft_abs_value(index_a, index_b) && index_a != index_b)
     {
         if (index_a > index_b)
+        {
             rotate(head_a);
+            printf("ra\n");
+        }
         else
+        {
             rotate(head_b);
+            printf("rb\n");
+        }        
         j++;
     }
     return ;
@@ -84,9 +91,15 @@ void    execute_method2(int index_a, int index_b, t_stack **head_a, t_stack **he
     while (j < ft_abs_value(a, b) && a != b)
     {
         if (b > a)
+        {
             reverse_rotate(head_b);
+            printf("rrb\n");
+        }
         else
+        {
             reverse_rotate(head_a);
+            printf("rra\n");
+        }
         j++;
     }
     return ;
@@ -102,6 +115,7 @@ void    execute_method3(int index_a, int index_b, t_stack **head_a, t_stack **he
     while (i < index_a)
     {   
         rotate(head_a);
+        printf("ra\n");
         i++;
     }
     while (j < (ft_lstsize(*head_b) - index_b))
@@ -122,6 +136,7 @@ void    execute_method4(int index_a, int index_b, t_stack **head_a, t_stack **he
     while (i < index_b)
     {   
         rotate(head_b);
+        printf("rb\n");
         i++;
     }
     while (j < (ft_lstsize(*head_a) - index_a))

@@ -112,6 +112,7 @@ void    			execute_method1(int index_a, int index_b, t_stack **head_a, t_stack *
 void    			execute_method2(int index_a, int index_b, t_stack **head_a, t_stack **head_b);
 void    			execute_method3(int index_a, int index_b, t_stack **head_a, t_stack **head_b);
 void    			execute_method4(int index_a, int index_b, t_stack **head_a, t_stack **head_b);
+void    			final_check(t_stack **head_a, t_struct *tab);
 
 //lst functions 
 int					ft_lstsize(t_stack *lst);
