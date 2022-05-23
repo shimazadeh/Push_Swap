@@ -14,11 +14,6 @@
 
 void    execution_function(t_stack **head_a, t_stack **head_b, t_ind *index)
 {
-/*    t_stack *a;
-    t_stack *b;
-
-    b = *head_b;
-    a = *head_a;*/
     while (*head_b)
     {
         initialize_costs_index(head_b, index);
@@ -37,8 +32,7 @@ void    execution_function(t_stack **head_a, t_stack **head_b, t_ind *index)
             execute_method3(index->index_a, index->index_b, head_a, head_b);
         else if (index->method_num == 4)
             execute_method4(index->index_a, index->index_b, head_a, head_b);
-        push(head_a, head_b);
-        printf("pa\n");
+        push(head_a, head_b, "pa");
     }
     return ;
 }
@@ -58,15 +52,9 @@ void    execute_method1(int index_a, int index_b, t_stack **head_a, t_stack **he
     while (j < ft_abs_value(index_a, index_b) && index_a != index_b)
     {
         if (index_a > index_b)
-        {
-            rotate(head_a);
-            printf("ra\n");
-        }
+            rotate(head_a, "ra");
         else
-        {
-            rotate(head_b);
-            printf("rb\n");
-        }        
+            rotate(head_b, "rb");
         j++;
     }
     return ;
@@ -91,15 +79,9 @@ void    execute_method2(int index_a, int index_b, t_stack **head_a, t_stack **he
     while (j < ft_abs_value(a, b) && a != b)
     {
         if (b > a)
-        {
-            reverse_rotate(head_b);
-            printf("rrb\n");
-        }
+            reverse_rotate(head_b, "rrb");
         else
-        {
-            reverse_rotate(head_a);
-            printf("rra\n");
-        }
+            reverse_rotate(head_a, "rra");
         j++;
     }
     return ;
@@ -116,14 +98,12 @@ void    execute_method3(int index_a, int index_b, t_stack **head_a, t_stack **he
     size = ft_lstsize(*head_b) - index_b;
     while (i < index_a)
     {   
-        rotate(head_a);
-        printf("ra\n");
+        rotate(head_a, "ra");
         i++;
     }
     while (j < size)
     {
-        reverse_rotate(head_b);
-        printf("rrb\n");
+        reverse_rotate(head_b, "rrb");
         j++;
     }
     return ;
@@ -140,14 +120,12 @@ void    execute_method4(int index_a, int index_b, t_stack **head_a, t_stack **he
     size = ft_lstsize(*head_a) - index_a;
     while (i < index_b)
     {   
-        rotate(head_b);
-        printf("rb\n");
+        rotate(head_b, "rb");
         i++;
     }
     while (j < size)
     {
-        reverse_rotate(head_a);
-        printf("rra\n");
+        reverse_rotate(head_a, "rra");
         j++;
     }
     return ;

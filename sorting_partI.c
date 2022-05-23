@@ -85,15 +85,9 @@ void    move_to_stack_b(t_stack **head_a, t_stack **head_b, t_struct *tab)
     while (size > 0)
     {
         if ((*a)->content != tab->min && (*a)->content != tab->max && (*a)->content != tab->median)
-        {
-            push(b, a);
-            printf("pb\n");
-        }
+            push(b, a, "pb");
         else
-        {
-            rotate(a);
-            printf("ra\n");
-        }
+            rotate(a, "ra");
         size--;
     }
     initial_sort_stack_a(head_a, tab);
@@ -106,32 +100,21 @@ void    initial_sort_stack_a(t_stack **head_a, t_struct *tab)
 
     a = head_a;
     if ((*a)->content == tab->max && (*a)->next->content == tab->min)
-    {
-        rotate(a);
-        printf("ra\n");
-    }
+        rotate(a, "ra");
     else if ((*a)->content == tab->max && (*a)->next->content == tab->median)
     {
-        swap(a);    
-        reverse_rotate(a);
-        printf("sa\nrra\n");
+        swap(a, "sa");
+        reverse_rotate(a, "rra");
     }
     else if ((*a)->content == tab->median && (*a)->next->content == tab->min)
-    {
-        swap(a);
-        printf("sa\n");
-    }
+        swap(a, "sa");
     else if ((*a)->content == tab->median && (*a)->next->content == tab->max)
-    {
-        reverse_rotate(a);
-        printf("rra\n");
-    }
+        reverse_rotate(a, "rra");
     else if ((*a)->content == tab->min && (*a)->next->content == tab->max)
     {
-        rotate(a);
-        swap(a);
-        reverse_rotate(a);
-        printf("ra\nsa\nrra\n");
+        rotate(a, "ra");
+        swap(a, "sa");
+        reverse_rotate(a, "rra");
     }
     return ;
 }

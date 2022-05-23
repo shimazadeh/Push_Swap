@@ -100,7 +100,18 @@ int calculate_cost_method3(int index_a, int index_b, t_stack **head_a, t_stack *
 
 int calculate_cost_method4(int index_a, int index_b, t_stack **head_a, t_stack **head_b)
 {// RB + RRA
-    int i;
+    int j;
+    t_stack *node;
+
+    node = *head_a;
+    j = 0;
+    while (j < index_a)
+    {
+        node = node->next;
+        j++;
+    }
+    return (index_b + ft_lstsize(node));
+/*    int i;
     int j;
 
     i = 0;
@@ -109,5 +120,5 @@ int calculate_cost_method4(int index_a, int index_b, t_stack **head_a, t_stack *
         i++;
     while (j < (ft_lstsize(*head_a) - index_a))
         j++;
-    return (i + j);
+    return (i + j);*/
 }

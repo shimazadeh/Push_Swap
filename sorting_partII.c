@@ -145,8 +145,7 @@ void    final_check(t_stack **head_a, t_struct *tab)
             {
                 while(count != (len - position))
                 {
-                    reverse_rotate(head_a);
-                    printf("rra\n");
+                    reverse_rotate(head_a, "rra");
                     count++;
                 }
             }
@@ -154,8 +153,7 @@ void    final_check(t_stack **head_a, t_struct *tab)
             {
                 while (count != position)
                 {
-                    rotate(head_a);
-                    printf("ra\n");
+                    rotate(head_a, "ra");
                     count++;
                 }
             }
@@ -167,16 +165,14 @@ void    final_check(t_stack **head_a, t_struct *tab)
                 while(count != (len - position))
                 {    
                     count++;
-                    reverse_rotate(head_a);
-                    printf("rra\n");
+                    reverse_rotate(head_a, "rra");
                 }
             }
             else //min is closer to the top of the stack
             {
                 while (count != position)
                 {
-                    rotate(head_a);
-                    printf("ra\n");
+                    rotate(head_a, "ra");
                     count++;
                 }
             }

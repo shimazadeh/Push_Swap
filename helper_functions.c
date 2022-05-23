@@ -48,3 +48,5 @@ void    ft_free_lst(t_stack **lst)// your leaks are from here, maybe send *lst o
         free(tmp);
     }
 }
+
+

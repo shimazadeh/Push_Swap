@@ -62,9 +62,9 @@ int allowed_char_check(char **arg) //accept only digits/signs/space
 
 int dup_error_check(char **arg) //checks for duplicates & limits
 {
-    int     j;
-    int     k;
-    int     size;
+    int j;
+    int k;
+    int size;
 
     j = 0;
     while (arg[j])
@@ -90,7 +90,7 @@ int multi_check(char *arg) //if more than 1 argument
 {
     char    **tab;
     int     size;
-    
+
     tab = ft_split(arg, ' ');
     size = ft_strlen_tab(tab);
     if (dup_error_check (tab) == 1)
@@ -107,6 +107,6 @@ int all_error_checks(int size, char **arg)// checks for all errors
     if (size > 2 && dup_error_check(arg) == 1)
         return (1);
     if (size == 2 && multi_check(arg[1]) == 1)
-        return (1);
+        return(1);
     return (0);
 }

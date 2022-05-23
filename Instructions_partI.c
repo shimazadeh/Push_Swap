@@ -12,10 +12,10 @@
 
 #include "push_swap.h"
 
-void    swap(t_stack **lst)
+void    swap(t_stack **lst, char *str)
 {
-    t_stack  *first;
-    t_stack  *second;
+    t_stack *first;
+    t_stack *second;
 
     if (!(*lst) || !((*lst)->next))
         return ;
@@ -25,10 +25,11 @@ void    swap(t_stack **lst)
     *lst = (*lst)->next;
     ft_lstadd_front(lst, first);
     ft_lstadd_front(lst, second);
+    printf("%s\n", str);
     return ;
 }
 
-void    push(t_stack **head_to, t_stack **head_from)
+void    push(t_stack **head_to, t_stack **head_from, char *str)
 {
     t_stack  *to;
     t_stack  *from;
@@ -52,10 +53,11 @@ void    push(t_stack **head_to, t_stack **head_from)
         temp->next = to;
         *head_to = temp;
     }
+    printf("%s\n", str);
     return ;
 }
 
-void    rotate(t_stack **head_lst)
+void    rotate(t_stack **head_lst, char *str)
 {
     t_stack  *first;
     t_stack  *last;
@@ -72,10 +74,12 @@ void    rotate(t_stack **head_lst)
     last->next = first;
     first->next = NULL;
     *head_lst = stack;
+    if (ft_strlen(str))
+        printf("%s\n", str);
     return ;
 }
 
-void    reverse_rotate(t_stack **head_lst)
+void    reverse_rotate(t_stack **head_lst, char *str)
 {
     t_stack  *prev;
     t_stack  *last;
@@ -93,5 +97,7 @@ void    reverse_rotate(t_stack **head_lst)
     last->next = stack;
     prev->next = NULL; 
     *head_lst = last;
+    if (ft_strlen(str))
+        printf("%s\n", str);
     return ;
 }

@@ -39,7 +39,6 @@ int main(int argc, char **argv)
     index = (t_ind *)malloc(sizeof(t_ind));
     a = NULL;
     b = NULL;
-
     if (all_error_checks(argc, argv) == 1)
         {
             write(1, "Error\n", 6);
@@ -47,11 +46,9 @@ int main(int argc, char **argv)
         }
     else if (all_error_checks(argc, argv) == 2)
         return (0);
-
     parsing(&a, argv);
     if (sort_check(&a) == 0)
         return (0);
-    //a function to check if its already sorted//
     initialize_tab(tab);
     find_min_max(&a, tab);
     find_median(&a, tab);
@@ -76,16 +73,9 @@ int main(int argc, char **argv)
     display(b);
 */
     final_check(&a, tab);
-/*
-    printf("the stack a after final check:\n");
-    display(a);
-    printf("the stack b after final check:\n");
-    display(b);*/
-
     ft_free_lst(&a);
     ft_free_lst(&b);
     free(tab);
     free(index);
-
     return (0);
 }

@@ -78,10 +78,10 @@ void				parsing(t_stack **lst, char **arg);
 int 				sort_check(t_stack **head_a);
 
 //instructions
-void    			swap(t_stack **lst);
-void    			push(t_stack **head_to, t_stack **head_from);
-void    			rotate(t_stack **head_lst);
-void    			reverse_rotate(t_stack **head_lst);
+void    			swap(t_stack **lst, char *str);
+void    			push(t_stack **head_to, t_stack **head_from, char *str);
+void    			rotate(t_stack **head_lst, char *str);
+void    			reverse_rotate(t_stack **head_lst, char *str);
 void    			swap_both_lst(t_stack **a, t_stack **b);
 void    			rotate_both_lst(t_stack **a, t_stack **b);
 void    			rev_rotate_both_lst(t_stack **a, t_stack **b);
