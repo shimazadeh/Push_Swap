@@ -74,8 +74,8 @@ int 				all_error_checks(int size, char **arg);
 int					allowed_char_check(char **arg);
 int					dup_error_check(char **arg);
 int 				multi_check(char *arg);
-
 void				parsing(t_stack **lst, char **arg);
+int 				sort_check(t_stack **head_a);
 
 //instructions
 void    			swap(t_stack **lst);
@@ -123,7 +123,6 @@ void				ft_lstadd_front(t_stack **lst, t_stack *new);
 
 
 //not sure if I need it 
-int 				sort_check(t_stack **head_a, int element);
 
 void    			display(t_stack *b);
 

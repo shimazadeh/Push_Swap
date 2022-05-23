@@ -12,26 +12,29 @@
 
 #include "push_swap.h"
 
-int sort_check(t_stack **head_a, int element)// checks if stack a is ready to move element
+int sort_check(t_stack **head_a)// checks if the input is already sorted
 {
     t_stack *a;
-    int     first;
-    int     last;
-
+    t_stack *a_iteri;
+    
     a = *head_a;
-    first = a->content;
-    while (a->next)
+    while (a)
+    {
+        a_iteri = a->next;
+        while (a_iteri)
+        {
+            if (a->content > a_iteri->content)
+                return (1);
+            a_iteri = a_iteri->next;
+        }
         a = a->next;
-    last = a->content;
-    if (element > last && element <first)
-        return (0);
-    else
-        return (1);
+    }
+    return (0);
 }
 
-int calculate_cost_method1(int index_a, int index_b, t_stack **head_a, t_stack **head_b) //RR + RA/RB
-{
-    int     i;
+int calculate_cost_method1(int index_a, int index_b, t_stack **head_a, t_stack **head_b)
+{//RR + RA/RB
+/*    int     i;
     int     j;
 
     i = 0;
@@ -40,44 +43,63 @@ int calculate_cost_method1(int index_a, int index_b, t_stack **head_a, t_stack *
         i++;
     while (j < ft_abs_value(index_a, index_b) && index_a != index_b)
         j++;
-    return (i + j);
+    return (i + j);*/
+    if (index_a < index_b)
+        return (index_b);
+    return (index_a);
 }
 
 
-int calculate_cost_method2(int index_a, int index_b, t_stack **head_a, t_stack **head_b)// RRR +RRA/RRB
-{
-    int a;
-    int b;
+int calculate_cost_method2(int index_a, int index_b, t_stack **head_a, t_stack **head_b)
+{// RRR +RRA/RRB
     int i;
-    int j;
+    t_stack *node_a;
+    t_stack *node_b;
 
     i = 0;
-    j = 0;
-    a = ft_lstsize(*head_a) - index_a;
+    node_a = *head_a;
+    node_b = *head_b;
+    while (i < index_a)
+    {
+        node_a = node_a->next;
+        i++;
+    }
+    i = 0;
+    while (i < index_b)
+    {
+        node_b = node_b->next;
+        i++;
+    }
+    if (ft_lstsize(node_a) < ft_lstsize(node_b))
+        return (ft_lstsize(node_b));
+    return (ft_lstsize(node_a));
+    /*a = ft_lstsize(*head_a) - index_a;
     b = ft_lstsize(*head_b) - index_b;
     while (i < ft_min(a, b))
         i++;
     while (j < ft_abs_value(a, b) && a != b)
         j++;
-    return (i + j);
+    return (i + j);*/
 }
 
-int calculate_cost_method3(int index_a, int index_b, t_stack **head_a, t_stack **head_b)// RA + RRB
-{
-    int i;
+int calculate_cost_method3(int index_a, int index_b, t_stack **head_a, t_stack **head_b)
+{// RA + RRB
+
     int j;
+    t_stack *node;
 
-    i = 0;
+    node = *head_b;
     j = 0;
-    while (i < index_a)
-        i++;
-    while (j < (ft_lstsize(*head_b) - index_b))
+    while (j < index_b)
+    {
+        node = node->next;
         j++;
-    return (i + j);
+    }
+    return (index_a + ft_lstsize(node));
 }
 
-int calculate_cost_method4(int index_a, int index_b, t_stack **head_a, t_stack **head_b)// RB + RRA
-{
+int calculate_cost_method4(int index_a, int index_b, t_stack **head_a, t_stack **head_b)
+{// RB + RRA
     int i;
     int j;
 

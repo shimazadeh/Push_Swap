@@ -57,10 +57,10 @@ void    calculate_all_costs(t_stack **head_a, t_stack **head_b, t_ind *index)
             if (!a->next && b->content > a->content)
                 i = 0;
         }
-        b->cost1 = calculate_cost_method1(j, i, head_a, head_b);
-        b->cost2 = calculate_cost_method2(j, i, head_a, head_b);
-        b->cost3 = calculate_cost_method3(j, i, head_a, head_b);
-        b->cost4 = calculate_cost_method4(j, i, head_a, head_b);
+        b->cost1 = calculate_cost_method1(i, j, head_a, head_b);
+        b->cost2 = calculate_cost_method2(i, j, head_a, head_b);
+        b->cost3 = calculate_cost_method3(i, j, head_a, head_b);
+        b->cost4 = calculate_cost_method4(i, j, head_a, head_b);
         update_lowest_cost(b, index, i, j);
         j++;
         b = b->next;
@@ -146,6 +146,7 @@ void    final_check(t_stack **head_a, t_struct *tab)
                 while(count != (len - position))
                 {
                     reverse_rotate(head_a);
+                    printf("rra\n");
                     count++;
                 }
             }
@@ -154,6 +155,7 @@ void    final_check(t_stack **head_a, t_struct *tab)
                 while (count != position)
                 {
                     rotate(head_a);
+                    printf("ra\n");
                     count++;
                 }
             }
@@ -166,6 +168,7 @@ void    final_check(t_stack **head_a, t_struct *tab)
                 {    
                     count++;
                     reverse_rotate(head_a);
+                    printf("rra\n");
                 }
             }
             else //min is closer to the top of the stack
@@ -173,6 +176,7 @@ void    final_check(t_stack **head_a, t_struct *tab)
                 while (count != position)
                 {
                     rotate(head_a);
+                    printf("ra\n");
                     count++;
                 }
             }

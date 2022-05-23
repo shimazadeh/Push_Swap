@@ -23,7 +23,7 @@ void    execution_function(t_stack **head_a, t_stack **head_b, t_ind *index)
     {
         initialize_costs_index(head_b, index);
         calculate_all_costs(head_a, head_b, index);
-/*        printf("*****************\n");
+    /*    printf("*****************\n");
         printf("stack b is \n");
         display(*head_b);
         printf("stack a is \n");
@@ -109,18 +109,21 @@ void    execute_method3(int index_a, int index_b, t_stack **head_a, t_stack **he
 {
     int i;
     int j;
+    int size;
 
     i = 0;
     j = 0;
+    size = ft_lstsize(*head_b) - index_b;
     while (i < index_a)
     {   
         rotate(head_a);
         printf("ra\n");
         i++;
     }
-    while (j < (ft_lstsize(*head_b) - index_b))
+    while (j < size)
     {
         reverse_rotate(head_b);
+        printf("rrb\n");
         j++;
     }
     return ;
@@ -130,18 +133,21 @@ void    execute_method4(int index_a, int index_b, t_stack **head_a, t_stack **he
 {
     int i;
     int j;
+    int size;
 
     i = 0;
     j = 0;
+    size = ft_lstsize(*head_a) - index_a;
     while (i < index_b)
     {   
         rotate(head_b);
         printf("rb\n");
         i++;
     }
-    while (j < (ft_lstsize(*head_a) - index_a))
+    while (j < size)
     {
         reverse_rotate(head_a);
+        printf("rra\n");
         j++;
     }
     return ;

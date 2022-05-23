@@ -16,10 +16,11 @@ void    display(t_stack *b)
     while (b)
     {
         printf("the content is: %d\n", b->content);
+        /*
         printf("the cost1 is: %d\n", b->cost1);
         printf("the cost2 is: %d\n", b->cost2);
         printf("the cost3 is: %d\n", b->cost3);
-        printf("the cost4 is: %d\n", b->cost4);
+        printf("the cost4 is: %d\n", b->cost4);*/
         printf("\n");
         b = b->next;
     }
@@ -48,6 +49,8 @@ int main(int argc, char **argv)
         return (0);
 
     parsing(&a, argv);
+    if (sort_check(&a) == 0)
+        return (0);
     //a function to check if its already sorted//
     initialize_tab(tab);
     find_min_max(&a, tab);
@@ -77,8 +80,7 @@ int main(int argc, char **argv)
     printf("the stack a after final check:\n");
     display(a);
     printf("the stack b after final check:\n");
-    display(b);
-*/
+    display(b);*/
 
     ft_free_lst(&a);
     ft_free_lst(&b);
