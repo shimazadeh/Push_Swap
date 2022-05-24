@@ -11,7 +11,6 @@
 /* ************************************************************************** */
 #include "push_swap.h"
 
-
 int	ft_isnum(int c)
 {
 	if (ft_isdigit(c) || ft_issign(c))
