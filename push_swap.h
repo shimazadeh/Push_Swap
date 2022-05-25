@@ -20,6 +20,7 @@
 # include <stdint.h>
 # include <stdio.h>
 //# include "libft.h"
+//# include "ft_printf.h"
 
 typedef struct s_stack
 {
@@ -29,7 +30,7 @@ typedef struct s_stack
 	int				cost3;
 	int				cost4;
 	struct s_stack	*next;
-	struct s_stack	*previous;
+//	struct s_stack	*previous;
 }t_stack;
 
 typedef struct s_struct
@@ -63,7 +64,6 @@ int 				ft_max(int a, int b);
 int 				ft_min(int a, int b);
 int 				ft_abs_value(int a, int b);
 int					ft_strlen_tab(char **tab);
-int					ft_strcmp(const char *s1, const char *s2);
 
 
 char				**ft_free(char **dst, int i);
@@ -90,7 +90,7 @@ void    			rev_rotate_both_lst(t_stack **a, t_stack **b);
 //sorting algorithm
 void    			find_median(t_stack **head_lst, t_struct *tab);
 void    			find_min_max(t_stack **head_lst, t_struct *tab);
-t_struct			*initialize_tab(t_struct  *tab);
+t_struct			*update_tab(t_struct  *tab, t_stack **head_lst);
 
 //one function to move everything else to stack B
 void				move_to_stack_b(t_stack **head_a, t_stack **head_b, t_struct *tab);
@@ -106,6 +106,8 @@ int 				calculate_cost_method4(int index_a, int index_b, t_stack **head_a);
 void    			calculate_all_costs(t_stack **head_a, t_stack **head_b, t_ind *index);
 void    			update_lowest_cost(t_stack *head_b, t_ind *index, int index_a, int index_b);
 void    			initialize_costs_index(t_stack **head_b, t_ind *index);
+int					calculate_position_condition1(t_stack *head_a, t_stack *head_b);
+int					calculate_position_condition2(t_stack *head_a, t_stack *head_b);
 
 //function to execute the method
 void				execution_function(t_stack **head_a, t_stack **head_b, t_ind *index);

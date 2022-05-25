@@ -58,18 +58,16 @@ int	main(int argc, char **argv)
 	a = NULL;
 	b = NULL;
 	if (all_error_checks(argc, argv) == 1)
-		{
-			write(1, "Error\n", 6);
+//			write(1, "Error\n", 6);
 			return (0);
-		}
-	else if (all_error_checks(argc, argv) == 2)
-		return (0);
+//	else if (all_error_checks(argc, argv) == 2)
+//		return (0);
 	parsing(&a, argv);
-	if (sort_check(&a) == 0)
+	if (sort_check(&a) == 0 || argc == 1)
 		return (0);
-	initialize_tab(tab);
-	find_min_max(&a, tab);
-	find_median(&a, tab);
+	update_tab(tab, &a);
+//	find_min_max(&a, tab);
+//	find_median(&a, tab);
 /*
 	printf("the min is %d, the max is %d, the median is %d\n", tab->min, tab->max, tab->median);
 
@@ -84,15 +82,11 @@ int	main(int argc, char **argv)
 	display(b);
 */
 	execution_function(&a, &b, index);
-
-
-
 	final_check(&a, tab);
 /*
 	printf("the stack a after execution:\n");
 	display(a);
 */
-
 	ft_free_lst(&a);
 	ft_free_lst(&b);
 	free(tab);

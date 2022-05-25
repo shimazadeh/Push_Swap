@@ -106,10 +106,19 @@ int	all_error_checks(int size, char **arg)// checks for all errors
 	if (size == 1)
 		return (2);
 	if (allowed_char_check(arg) == 1)
+	{
+		write(1, "Error\n", 6);
 		return (1);
+	}
 	if (size > 2 && dup_error_check(arg) == 1)
+	{
+		write(1, "Error\n", 6);
 		return (1);
+	}
 	if (size == 2 && multi_check(arg[1]) == 1)
+	{
+		write(1, "Error\n", 6);
 		return (1);
+	}
 	return (0);
 }

@@ -12,7 +12,7 @@
 
 #include "push_swap.h"
 
-long long int	ft_atoi(const char *str)
+long long int	ft_atoi_ps(const char *str)
 {
 	signed long long int		result;
 	signed long long int		sign;
@@ -25,7 +25,7 @@ long long int	ft_atoi(const char *str)
 		|| str[i] == '\t' || str[i] == '\f' || str[i] == '\r')
 		i++;
 	if (str[i] == 45 || str[i] == 43)
-	{	
+	{
 		if (str[i] == 45)
 			sign = sign * -1;
 		i++;

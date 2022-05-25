@@ -27,19 +27,3 @@ int	ft_strncmp(const char *s1, const char *s2, size_t n)
 	}
 	return (0);
 }
-
-int	ft_strcmp(const char *s1, const char *s2)
-{
-	size_t	k;
-
-	k = 0;
-	while (s1[k] || s2[k])
-	{
-		if (s1[k] != s2[k])
-			return ((unsigned char)s1[k] - (unsigned char)s2[k]);
-		if (s1[k] == '\0' || s2[k] == '\0')
-			return (0);
-		k++;
-	}
-	return (0);
-}

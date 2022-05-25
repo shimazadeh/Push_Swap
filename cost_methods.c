@@ -12,7 +12,7 @@
 
 #include "push_swap.h"
 
-int	sort_check(t_stack **head_a)// checks if the input is already sorted
+int	sort_check(t_stack **head_a)
 {
 	t_stack	*a;
 	t_stack	*a_iteri;
@@ -39,7 +39,7 @@ int	calculate_cost_method1(int index_a, int index_b)
 	return (index_a);
 }
 
-int	calculate_cost_method2(int index_a, int index_b, t_stack **head_a, t_stack **head_b)
+int	calculate_cost_method2(int in_a, int in_b, t_stack **head_a, t_stack **head_b)
 {// RRR +RRA/RRB
 	int		i;
 	t_stack	*node_a;
@@ -48,13 +48,13 @@ int	calculate_cost_method2(int index_a, int index_b, t_stack **head_a, t_stack *
 	i = 0;
 	node_a = *head_a;
 	node_b = *head_b;
-	while (i < index_a)
+	while (i < in_a)
 	{
 		node_a = node_a->next;
 		i++;
 	}
 	i = 0;
-	while (i < index_b)
+	while (i < in_b)
 	{
 		node_b = node_b->next;
 		i++;
@@ -79,7 +79,7 @@ int	calculate_cost_method3(int index_a, int index_b, t_stack **head_b)
 	return (index_a + ft_lstsize(node));
 }
 
-int calculate_cost_method4(int index_a, int index_b, t_stack **head_a)
+int	calculate_cost_method4(int index_a, int index_b, t_stack **head_a)
 {// RB + RRA
 	int		j;
 	t_stack	*node;

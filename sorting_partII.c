@@ -12,9 +12,9 @@
 
 #include "push_swap.h"
 
-int	calculate_position_conditionI(t_stack *head_a, t_stack *head_b)
+int	calculate_position_condition1(t_stack *head_a, t_stack *head_b)
 {
-	int i;
+	int	i;
 
 	i = 0;
 	while (head_a->next && head_a->content < head_a->next->content)
@@ -39,12 +39,12 @@ int	calculate_position_conditionI(t_stack *head_a, t_stack *head_b)
 	return (i);
 }
 
-int	calculate_position_conditionII(t_stack *head_a, t_stack *head_b)
+int	calculate_position_condition2(t_stack *head_a, t_stack *head_b)
 {
-	int i;
+	int	i;
 
 	i = 0;
-	while (head_a->next && head_b->content > head_a->content && head_a->content < head_a->next->content)
+	while (head_a->next && head_b->content > head_a->content) //&& head_a->content < head_a->next->content//)
 	{
 		head_a = head_a->next;
 		i++;
@@ -68,9 +68,9 @@ void	calculate_all_costs(t_stack **head_a, t_stack **head_b, t_ind *index)
 		i = 0;
 		a = *head_a;
 		if (b->content < a->content)
-			i = calculate_position_conditionI(a, b);
+			i = calculate_position_condition1(a, b);
 		else if (b->content > a->content)
-			i = calculate_position_conditionII(a, b);
+			i = calculate_position_condition2(a, b);
 		b->cost1 = calculate_cost_method1(i, j);
 		b->cost2 = calculate_cost_method2(i, j, head_a, head_b);
 		b->cost3 = calculate_cost_method3(i, j, head_b);
@@ -82,35 +82,35 @@ void	calculate_all_costs(t_stack **head_a, t_stack **head_b, t_ind *index)
 	return ;
 }
 
-void	update_lowest_cost(t_stack *head_b, t_ind *index, int index_a, int index_b)
+void	update_lowest_cost(t_stack *head_b, t_ind *index, int i, int j)
 {
 	if (head_b->cost1 < index->lowest_cost)
 	{
 		index->lowest_cost = head_b->cost1;
 		index->method_num = 1;
-		index->index_b = index_b;
-		index->index_a = index_a;
+		index->index_b = j;
+		index->index_a = i;
 	}
 	if (head_b->cost2 < index->lowest_cost)
 	{
 		index->lowest_cost = head_b->cost2;
 		index->method_num = 2;
-		index->index_b = index_b;
-		index->index_a = index_a;
+		index->index_b = j;
+		index->index_a = i;
 	}
 	if (head_b->cost3 < index->lowest_cost)
 	{
 		index->lowest_cost = head_b->cost3;
 		index->method_num = 3;
-		index->index_b = index_b;
-		index->index_a = index_a;
+		index->index_b = j;
+		index->index_a = i;
 	}
 	if (head_b->cost4 < index->lowest_cost)
 	{
 		index->lowest_cost = head_b->cost4;
 		index->method_num = 4;
-		index->index_b = index_b;
-		index->index_a = index_a;
+		index->index_b = j;
+		index->index_a = i;
 	}
 	return ;
 }
@@ -164,7 +164,7 @@ void	final_sort_even(t_stack **head_a, int position, int len)
 	int	count;
 
 	count = 0;
-	if (position >= len / 2)//min is closer to the end of the stack
+	if (position >= len / 2)
 	{
 		while (count != (len - position))
 		{
@@ -172,7 +172,7 @@ void	final_sort_even(t_stack **head_a, int position, int len)
 			reverse_rotate(head_a, "rra");
 		}
 	}
-	else //min is closer to the top of the stack
+	else
 	{
 		while (count != position)
 		{
@@ -199,9 +199,9 @@ void	final_check(t_stack **head_a, t_struct *tab)
 			position++;
 			(a) = (a)->next;
 		}
-		if (len % 2 != 0) //length is odd
+		if (len % 2 != 0)
 			final_sort_odd(head_a, position, len);
-		else //length is even
+		else
 			final_sort_even(head_a, position, len);
 	}
 	return ;

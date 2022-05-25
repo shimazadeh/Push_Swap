@@ -12,11 +12,13 @@
 
 #include "push_swap.h"
 
-t_struct	*initialize_tab(t_struct *tab)
+t_struct	*update_tab(t_struct *tab, t_stack **head_lst)
 {
 	tab->min = -1;
 	tab->max = -1;
 	tab->median = -1;
+	find_min_max(head_lst, tab);
+	find_median(head_lst, tab);
 	return (tab);
 }
 
@@ -44,13 +46,10 @@ void	find_median(t_stack **head_lst, t_struct *tab)
 {
 	t_stack	*start;
 	t_stack	*compare;
-//	t_stack	*stack;
 	int		size;
 	int		count;
 
 	start = *head_lst;
-//	compare = (*head_lst)->next;
-//	stack = *head_lst;
 	size = ft_lstsize(start);
 	while (start)
 	{
@@ -65,7 +64,6 @@ void	find_median(t_stack **head_lst, t_struct *tab)
 		if (count == size / 2)
 		{
 			tab->median = start->content;
-//			*head_lst = stack;
 			return ;
 		}
 		start = start->next;
@@ -83,10 +81,14 @@ void	move_to_stack_b(t_stack **head_a, t_stack **head_b, t_struct *tab)
 	size = ft_lstsize(*a);
 	while (size > 0)
 	{
-		if ((*a)->content != tab->min && (*a)->content != tab->max && (*a)->content != tab->median)
-			push(b, a, "pb");
-		else
+		if ((*a)->content == tab->min)
 			rotate(a, "ra");
+		else if ((*a)->content == tab->max)
+			rotate(a, "ra");
+		else if ((*a)->content == tab->median)
+			rotate(a, "ra");
+		else
+			push(b, a, "pb");
 		size--;
 	}
 	initial_sort_stack_a(head_a, tab);
