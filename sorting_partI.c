@@ -17,8 +17,11 @@ t_struct	*update_tab(t_struct *tab, t_stack **head_lst)
 	tab->min = -1;
 	tab->max = -1;
 	tab->median = -1;
-	find_min_max(head_lst, tab);
-	find_median(head_lst, tab);
+	if (ft_lstsize(*head_lst) > 2)
+	{
+		find_min_max(head_lst, tab);
+		find_median(head_lst, tab);
+	}
 	return (tab);
 }
 

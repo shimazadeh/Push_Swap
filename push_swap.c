@@ -43,6 +43,29 @@ int	check_limits(t_stack **head_a)
 	}
 	return (0);
 }
+/*
+void	manual_sort(t_stack **head_a, t_struct *tab)
+{
+	t_stack *a;
+	t_stack *last;
+
+	a = head_a;
+	last = ft_lstlast(*a);
+	if (ft_lstsize(a) == 2)
+	{
+		if (a->content > a->next->content)
+			rotate(head_a, "ra");
+	}
+	else if (ft_lstsize(a) == 3)
+		initial_sort_stack_a(head_a);
+	else if (ft_lstsize(a) == 4)
+	{
+		if (a->content == tab->max)
+			rotate(&a);
+
+	}
+	return ;
+}*/
 
 int	main(int argc, char **argv)
 {
@@ -58,34 +81,19 @@ int	main(int argc, char **argv)
 	a = NULL;
 	b = NULL;
 	if (all_error_checks(argc, argv) == 1)
-//			write(1, "Error\n", 6);
 			return (0);
-//	else if (all_error_checks(argc, argv) == 2)
-//		return (0);
 	parsing(&a, argv);
 	if (sort_check(&a) == 0 || argc == 1)
 		return (0);
 	update_tab(tab, &a);
-//	find_min_max(&a, tab);
-//	find_median(&a, tab);
-/*
-	printf("the min is %d, the max is %d, the median is %d\n", tab->min, tab->max, tab->median);
-
-	printf("the content of stack a before move:\n");
-	display(a);
-*/
 	move_to_stack_b(&a, &b, tab);
-/*
-	printf("the content of stack a after sorting:\n");
-	display(a);
-	printf("the content of stack b after sorting:\n");
-	display(b);
-*/
 	execution_function(&a, &b, index);
 	final_check(&a, tab);
 /*
 	printf("the stack a after execution:\n");
 	display(a);
+	printf("the stack b after execution:\n");
+	display(b);
 */
 	ft_free_lst(&a);
 	ft_free_lst(&b);
@@ -93,3 +101,4 @@ int	main(int argc, char **argv)
 	free(index);
 	return (0);
 }
+

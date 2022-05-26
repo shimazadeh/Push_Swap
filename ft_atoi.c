@@ -12,7 +12,7 @@
 
 #include "push_swap.h"
 
-long long int	ft_atoi_ps(const char *str)
+long long int	ft_atoi(const char *str)
 {
 	signed long long int		result;
 	signed long long int		sign;

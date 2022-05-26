@@ -11,25 +11,54 @@
 # **************************************************************************** #
 
 NAME = push_swap
+LIBFT = ./Libft/libft.a
+PRINTF = ./printf/libftprintf.a
 
-PRINTF = $(addprefix printf/, ft_base_function.c ft_base_function_partII.c ft_paddings.c ft_parsing.c ft_print_subs.c ft_print_subs_partII.c ft_printf.c ft_put.c ft_eval_flags.c ft_eval_flags_int.c)
-SRCS = ft_atoi.c ft_lstadd_back.c ft_lstadd_front.c ft_lstlast.c ft_lstnew.c ft_lstsize.c ft_split.c ft_strncmp.c cost_methods.c execution_functions.c helper_functions.c Instructions_partI.c Instructions_partII.c Libft_Util.c Parsing.c push_swap.c sorting_partI.c sorting_partII.c
-
+SRCS = ft_lstnew.c Libft_Util.c cost_methods.c ft_lstsize.c execution_functions.c ft_split.c Parsing.c ft_atoi.c ft_strncmp.c push_swap.c ft_lstadd_back.c helper_functions.c ft_lstadd_front.c Instructions_partI.c sorting_partI.c ft_lstlast.c Instructions_partII.c sorting_partII.c
 OBJS = $(SRCS:%.c=%.o)
 FLAGS = -Wall -Wextra -Werror
+all:: $(NAME)
+
 
 $(NAME): $(OBJS)
-	ar -rcs $(NAME) $(OBJS)
+	$(MAKE) -C ./Libft
+	$(MAKE) -C ./printf
+	gcc $(FLAGS) $(OBJS) -o $(NAME) $(LIBFT)
 
 $(OBJS): $(SRCS)
 	gcc $(FLAGS) -c $(SRCS)
 
-all:: $(NAME)
-
 clean:
 	rm -f *.o
+	$(MAKE) clean -C ./Libft
+	$(MAKE) clean -C ./printf
 
 fclean: clean
 	rm -f $(NAME)
 
 re: fclean all
+
+
+# NAME = push_swap
+
+# SRCS = ft_lstnew.c Libft_Util.c cost_methods.c ft_lstsize.c execution_functions.c ft_split.c Parsing.c ft_atoi.c ft_strncmp.c push_swap.c ft_lstadd_back.c helper_functions.c ft_lstadd_front.c Instructions_partI.c sorting_partI.c ft_lstlast.c Instructions_partII.c sorting_partII.c
+# OBJS = ${SRCS:.c=.o}
+# CC = gcc
+# CFLAGS = -Wall -Wextra -Werror
+# RM = rm -rf
+
+# all:: ${NAME}
+
+# $(NAME): $(OBJS)
+# 	$(CC) $(CFLAGS) $(OBJS) -o $(NAME)
+
+# %.o: %.c
+# 	$(CC) $(CFLAGS) -c $< -o $@
+
+# clean:
+# 	${RM} ${OBJS}
+
+# fclean: clean
+# 	${RM} $(NAME)
+
+# re: fclean all
