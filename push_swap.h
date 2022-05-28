@@ -79,7 +79,6 @@ int			dup_error_check(char **arg);
 int			multi_check(char *arg);
 void		parsing(t_stack **lst, char **arg);
 int			sort_check(t_stack **head_a);
-int			check_limits(t_stack **head_a);
 
 //instructions
 void		swap(t_stack **lst, char *str);

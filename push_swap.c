@@ -20,7 +20,7 @@ void	display(t_stack *b)
 		b = b->next;
 	}
 }
-
+/*
 int	check_limits(t_stack **head_a)
 {
 	t_stack	*a;
@@ -37,7 +37,7 @@ int	check_limits(t_stack **head_a)
 		a = a->next;
 	}
 	return (0);
-}
+}*/
 
 void	manual_sort(t_stack **a, t_stack **b, t_struct *tab, t_ind *index)
 {
