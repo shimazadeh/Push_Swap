@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   cost_calculation.c                                 :+:      :+:    :+:   */
+/*   cost_methods.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: shabibol <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/05/12 19:20:57 by shabibol          #+#    #+#             */
-/*   Updated: 2022/05/12 19:21:10 by shabibol         ###   ########.fr       */
+/*   Created: 2022/05/28 01:13:27 by shabibol          #+#    #+#             */
+/*   Updated: 2022/05/28 01:13:36 by shabibol         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,22 +39,22 @@ int	calculate_cost_method1(int index_a, int index_b)
 	return (index_a);
 }
 
-int	calculate_cost_method2(int in_a, int in_b, t_stack **head_a, t_stack **head_b)
+int	calculate_cost_method2(int index_a, int index_b, t_stack **a, t_stack **b)
 {// RRR +RRA/RRB
 	int		i;
 	t_stack	*node_a;
 	t_stack	*node_b;
 
 	i = 0;
-	node_a = *head_a;
-	node_b = *head_b;
-	while (i < in_a)
+	node_a = *a;
+	node_b = *b;
+	while (i < index_a)
 	{
 		node_a = node_a->next;
 		i++;
 	}
 	i = 0;
-	while (i < in_b)
+	while (i < index_b)
 	{
 		node_b = node_b->next;
 		i++;

@@ -18,12 +18,6 @@ void	execution_function(t_stack **head_a, t_stack **head_b, t_ind *index)
 	{
 		initialize_costs_index(head_b, index);
 		calculate_all_costs(head_a, head_b, index);
-	/*    printf("*****************\n");
-		printf("stack b is \n");
-		display(*head_b);
-		printf("stack a is \n");
-		display(*head_a);
-		printf("*****************\n");*/
 		if (index->method_num == 1)
 			execute_method1(index, head_a, head_b);
 		else if (index->method_num == 2)
@@ -79,7 +73,6 @@ void	execute_method2(t_ind *index, t_stack **head_a, t_stack **head_b)
 	b = ft_lstsize(*head_b) - index_b;
 	while (i++ < ft_min(a, b))
 		rev_rotate_both_lst(head_a, head_b);
-	//	i++;
 	i = 0;
 	while (i++ < ft_abs_value(a, b) && a != b)
 	{
@@ -87,7 +80,6 @@ void	execute_method2(t_ind *index, t_stack **head_a, t_stack **head_b)
 			reverse_rotate(head_b, "rrb");
 		else
 			reverse_rotate(head_a, "rra");
-	//	i++;
 	}
 	return ;
 }

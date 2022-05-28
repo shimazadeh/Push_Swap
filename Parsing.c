@@ -27,7 +27,7 @@ void	parsing(t_stack **lst, char **arg)
 		j = 0;
 		while (tab[j])
 		{
-			buffer = ft_atoi(tab[j]);
+			buffer = ft_atoi_ps(tab[j]);
 			new_lst = ft_lstnew(buffer); //*****there is a leak here*****
 			ft_lstadd_back(lst, new_lst);
 			j++;
@@ -75,7 +75,7 @@ int	dup_error_check(char **arg) //checks for duplicates & limits
 	while (arg[j])
 	{
 		k = j + 1;
-		if (ft_atoi(arg[j]) > 2147483647 || ft_atoi(arg[j]) < -2147483648)
+		if (ft_atoi_ps(arg[j]) > 2147483647 || ft_atoi_ps(arg[j]) < -2147483648)
 			return (1);
 		while (arg[k])
 		{

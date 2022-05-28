@@ -1,22 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_atoi.c                                          :+:      :+:    :+:   */
+/*   ft_atoi_ps.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: shabibol <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/02/28 04:02:41 by shabibol          #+#    #+#             */
-/*   Updated: 2022/03/02 10:04:33 by shabibol         ###   ########.fr       */
+/*   Created: 2022/05/28 01:14:06 by shabibol          #+#    #+#             */
+/*   Updated: 2022/05/28 01:14:10 by shabibol         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-long long int	ft_atoi(const char *str)
+long int	ft_atoi_ps(const char *str)
 {
 	signed long long int		result;
 	signed long long int		sign;
-	unsigned int	i;
+	unsigned int				i;
 
 	sign = 1;
 	i = 0;

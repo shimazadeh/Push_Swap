@@ -16,11 +16,6 @@ void	display(t_stack *b)
 	while (b)
 	{
 		printf("the content is: %d\n", b->content);
-		/*
-		printf("the cost1 is: %d\n", b->cost1);
-		printf("the cost2 is: %d\n", b->cost2);
-		printf("the cost3 is: %d\n", b->cost3);
-		printf("the cost4 is: %d\n", b->cost4);*/
 		printf("\n");
 		b = b->next;
 	}
@@ -28,9 +23,9 @@ void	display(t_stack *b)
 
 int	check_limits(t_stack **head_a)
 {
-	t_stack *a;
-	int     min;
-	int     max;
+	t_stack	*a;
+	int		min;
+	int		max;
 
 	min = -2147483648;
 	max = 2147483647;
@@ -43,36 +38,51 @@ int	check_limits(t_stack **head_a)
 	}
 	return (0);
 }
-/*
-void	manual_sort(t_stack **head_a, t_struct *tab)
+
+void	manual_sort(t_stack **a, t_stack **b, t_struct *tab, t_ind *index)
 {
-	t_stack *a;
-	t_stack *last;
+	update_tab(tab, a);
+	initial_sort_stack_a(a, tab);
+	execution_function(a, b, index);
+	update_tab(tab, a);
+	final_check(a, tab);
+}
 
-	a = head_a;
-	last = ft_lstlast(*a);
-	if (ft_lstsize(a) == 2)
+void	push_swap(t_stack **a, t_stack **b, t_struct *tab, t_ind *index)
+{
+	if (ft_lstsize(*a) == 2)
 	{
-		if (a->content > a->next->content)
-			rotate(head_a, "ra");
+		if ((*a)->content > (*a)->next->content)
+			rotate(a, "ra");
 	}
-	else if (ft_lstsize(a) == 3)
-		initial_sort_stack_a(head_a);
-	else if (ft_lstsize(a) == 4)
+	else if (ft_lstsize(*a) == 3)
 	{
-		if (a->content == tab->max)
-			rotate(&a);
-
+		update_tab(tab, a);
+		initial_sort_stack_a(a, tab);
+	}
+	else if (ft_lstsize(*a) == 4 || ft_lstsize(*a) == 5)
+	{
+		push(b, a, "pb");
+		if (ft_lstsize(*a) == 4)
+			push(b, a, "pb");
+		manual_sort(a, b, tab, index);
+	}
+	else
+	{
+		update_tab(tab, a);
+		move_to_stack_b(a, b, tab);
+		execution_function(a, b, index);
+		final_check(a, tab);
 	}
 	return ;
-}*/
+}
 
 int	main(int argc, char **argv)
 {
-	t_stack     *a;
-	t_struct    *tab;
-	t_stack     *b;
-	t_ind       *index;
+	t_stack		*a;
+	t_struct	*tab;
+	t_stack		*b;
+	t_ind		*index;
 
 	a = (t_stack *)malloc(sizeof(t_struct));
 	b = (t_stack *)malloc(sizeof(t_struct));
@@ -81,24 +91,29 @@ int	main(int argc, char **argv)
 	a = NULL;
 	b = NULL;
 	if (all_error_checks(argc, argv) == 1)
-			return (0);
+		return (0);
 	parsing(&a, argv);
 	if (sort_check(&a) == 0 || argc == 1)
 		return (0);
-	update_tab(tab, &a);
-	move_to_stack_b(&a, &b, tab);
-	execution_function(&a, &b, index);
-	final_check(&a, tab);
+	push_swap(&a, &b, tab, index);
+/*
+	if (ft_lstsize(a) < 6)
+		manual_sort(&a, &b, tab, index);
+	else
+	{
+		update_tab(tab, &a);
+		move_to_stack_b(&a, &b, tab);
+		execution_function(&a, &b, index);
+		final_check(&a, tab);
+	}*/
 /*
 	printf("the stack a after execution:\n");
 	display(a);
 	printf("the stack b after execution:\n");
-	display(b);
-*/
+	display(b);*/
 	ft_free_lst(&a);
 	ft_free_lst(&b);
 	free(tab);
 	free(index);
 	return (0);
 }
-
