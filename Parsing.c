@@ -28,7 +28,7 @@ void	parsing(t_stack **lst, char **arg)
 		while (tab[j])
 		{
 			buffer = ft_atoi_ps(tab[j]);
-			new_lst = ft_lstnew(buffer); //*****there is a leak here*****
+			new_lst = ft_lstnew(buffer);
 			ft_lstadd_back(lst, new_lst);
 			j++;
 		}
@@ -38,7 +38,7 @@ void	parsing(t_stack **lst, char **arg)
 	return ;
 }
 
-int	allowed_char_check(char **arg) //accept only digits/signs/space
+int	allowed_char_check(char **arg)
 {
 	int	i;
 	int	j;
@@ -65,7 +65,7 @@ int	allowed_char_check(char **arg) //accept only digits/signs/space
 	return (0);
 }
 
-int	dup_error_check(char **arg) //checks for duplicates & limits
+int	dup_error_check(char **arg)
 {
 	int	j;
 	int	k;
@@ -89,7 +89,7 @@ int	dup_error_check(char **arg) //checks for duplicates & limits
 	return (0);
 }
 
-int	multi_check(char *arg) //if more than 1 argument
+int	multi_check(char *arg)
 {
 	char	**tab;
 	int		size;
@@ -101,7 +101,7 @@ int	multi_check(char *arg) //if more than 1 argument
 	return (ft_free(tab, size), 0);
 }
 
-int	all_error_checks(int size, char **arg)// checks for all errors
+int	all_error_checks(int size, char **arg)
 {
 	if (size == 1)
 		return (2);

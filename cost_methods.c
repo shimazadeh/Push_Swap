@@ -33,14 +33,14 @@ int	sort_check(t_stack **head_a)
 }
 
 int	calculate_cost_method1(int index_a, int index_b)
-{//RR + RA/RB
+{
 	if (index_a < index_b)
 		return (index_b);
 	return (index_a);
 }
 
 int	calculate_cost_method2(int index_a, int index_b, t_stack **a, t_stack **b)
-{// RRR +RRA/RRB
+{
 	int		i;
 	t_stack	*node_a;
 	t_stack	*node_b;
@@ -65,7 +65,7 @@ int	calculate_cost_method2(int index_a, int index_b, t_stack **a, t_stack **b)
 }
 
 int	calculate_cost_method3(int index_a, int index_b, t_stack **head_b)
-{// RA + RRB
+{
 	int		j;
 	t_stack	*node;
 
@@ -80,7 +80,7 @@ int	calculate_cost_method3(int index_a, int index_b, t_stack **head_b)
 }
 
 int	calculate_cost_method4(int index_a, int index_b, t_stack **head_a)
-{// RB + RRA
+{
 	int		j;
 	t_stack	*node;
 

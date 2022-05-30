@@ -75,34 +75,27 @@ void	find_median(t_stack **head_lst, t_struct *tab)
 
 void	move_to_stack_b(t_stack **head_a, t_stack **head_b, t_struct *tab)
 {
-	t_stack	**a;
-	t_stack	**b;
 	int		size;
 
-	a = head_a;
-	b = head_b;
-	size = ft_lstsize(*a);
+	size = ft_lstsize(*head_a);
 	while (size > 0)
 	{
-		if ((*a)->content == tab->min)
-			rotate(a, "ra");
-		else if ((*a)->content == tab->max)
-			rotate(a, "ra");
-		else if ((*a)->content == tab->median)
-			rotate(a, "ra");
+		if ((*head_a)->content == tab->min)
+			rotate(head_a, "ra");
+		else if ((*head_a)->content == tab->max)
+			rotate(head_a, "ra");
+		else if ((*head_a)->content == tab->median)
+			rotate(head_a, "ra");
 		else
-			push(b, a, "pb");
+			push(head_b, head_a, "pb");
 		size--;
 	}
 	initial_sort_stack_a(head_a, tab);
 	return ;
 }
 
-void	initial_sort_stack_a(t_stack **head_a, t_struct *tab)
+void	initial_sort_stack_a(t_stack **a, t_struct *tab)
 {
-	t_stack	**a;
-
-	a = head_a;
 	if ((*a)->content == tab->max && (*a)->next->content == tab->min)
 		rotate(a, "ra");
 	else if ((*a)->content == tab->max && (*a)->next->content == tab->median)

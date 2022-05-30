@@ -47,7 +47,6 @@ typedef struct s_ind
 }t_ind;
 
 //libft functions
-//int					ft_isdigit(int c);
 long int	ft_atoi_ps(const char *str);
 int			ft_isalpha(int c);
 int			ft_issign(int c);
@@ -55,7 +54,6 @@ int			ft_isspace(int c);
 int			ft_isnum(int c);
 int			ft_strncmp(const char *s1, const char *s2, size_t n);
 char		**ft_split(char const *s, char c);
-//int		ft_strlen(char *s);
 
 //helpers
 int			ft_max(int a, int b);
@@ -93,7 +91,7 @@ void		rev_rotate_both_lst(t_stack **head_a, t_stack **head_b, char *str);
 void		find_median(t_stack **head_lst, t_struct *tab);
 void		find_min_max(t_stack **head_lst, t_struct *tab);
 t_struct	*update_tab(t_struct *tab, t_stack **head_lst);
-//void		manual_sort(t_stack **a, t_stack **b, t_struct *tab, t_ind *in);
+
 void		push_swap(t_stack **a, t_stack **b, t_struct *tab, t_ind *in);
 
 void		push_swap_low_stack(t_stack **a, t_stack **b, t_struct *tab);
@@ -128,19 +126,16 @@ void		final_check(t_stack **head_a, t_struct *tab);
 void		final_sort_odd(t_stack **head_a, int position, int len);
 void		final_sort_even(t_stack **head_a, int position, int len);
 
-
-
 //BONUSES
 int	checker(char *res, t_stack **head_a, t_stack **head_b);
 
-int					ft_strlen_GNL(char *s1);
+int					ft_strlen_gnl(char *s1);
 int					ft_gnl_strchr(char *s1);
 char				*ft_strndup(char *src, int size);
 char				*ft_strjoin(char *s1, char *s2);
 char				*get_next_line(int fd);
 void				ft_update_buffer(char *buffer, int size);
 void				ft_update_line(char *line, int size);
-
 
 //not sure if I need it
 void		display(t_stack *b);

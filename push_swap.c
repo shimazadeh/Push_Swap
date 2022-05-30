@@ -96,8 +96,8 @@ int	main(int argc, char **argv)
 	t_stack		*b;
 	t_ind		*index;
 
-	a = (t_stack *)malloc(sizeof(t_struct));
-	b = (t_stack *)malloc(sizeof(t_struct));
+//	a = (t_stack *)malloc(sizeof(t_stack));
+//	b = (t_stack *)malloc(sizeof(t_stack));
 	tab = (t_struct *)malloc(sizeof(t_struct));
 	index = (t_ind *)malloc(sizeof(t_ind));
 	a = NULL;
@@ -108,13 +108,13 @@ int	main(int argc, char **argv)
 	if (sort_check(&a) == 0 || argc == 1)
 		return (0);
 	push_swap(&a, &b, tab, index);
-/*
+/*	swap(&a, "sa");
 	printf("the stack a after execution:\n");
 	display(a);
 	printf("the stack b after execution:\n");
 	display(b);*/
 	ft_free_lst(&a);
-	ft_free_lst(&b);
+//	ft_free_lst(&b);
 	free(tab);
 	free(index);
 	return (0);

@@ -66,7 +66,7 @@ char	*get_next_line(int fd)
 
 	if (fd < 0)
 		return (NULL);
-	line = ft_strndup(buffer, ft_strlen_GNL(buffer));
+	line = ft_strndup(buffer, ft_strlen_gnl(buffer));
 	byte_read = 1;
 	while (byte_read && !ft_gnl_strchr(buffer) && !ft_gnl_strchr(line))
 	{
@@ -81,6 +81,6 @@ char	*get_next_line(int fd)
 		line = temp;
 	}
 	ft_update_buffer(buffer, 3);
-	ft_update_line(line, ft_strlen_GNL(line));
+	ft_update_line(line, ft_strlen_gnl(line));
 	return (line);
 }

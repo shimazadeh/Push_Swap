@@ -18,7 +18,6 @@ void	swap_both_lst(t_stack **a, t_stack **b, char *str)
 	swap(b, "");
 	if (ft_strlen(str))
 		ft_printf("%s\n", str);
-//		ft_printf("ss\n");
 	return ;
 }
 
@@ -28,7 +27,6 @@ void	rotate_both_lst(t_stack **a, t_stack **b, char *str)
 	rotate(b, "");
 	if (ft_strlen(str))
 		ft_printf("%s\n", str);
-//		ft_printf("rr\n");
 	return ;
 }
 
@@ -38,6 +36,5 @@ void	rev_rotate_both_lst(t_stack **a, t_stack **b, char *str)
 	reverse_rotate(b, "");
 	if (ft_strlen(str))
 		ft_printf("%s\n", str);
-//		ft_printf("rrr\n");
 	return ;
 }

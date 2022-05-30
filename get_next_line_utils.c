@@ -12,7 +12,7 @@
 
 #include "push_swap.h"
 
-int	ft_strlen_GNL(char *s1)
+int	ft_strlen_gnl(char *s1)
 {
 	int	i;
 
@@ -49,10 +49,12 @@ char	*ft_strjoin(char *s1, char *s2)
 	int		i;
 	int		j;
 	char	*dst;
+	int		size;
 
 	i = 0;
 	j = 0;
-	dst = (char *)malloc(sizeof(char) * (ft_strlen_GNL(s1) + ft_strlen_GNL(s2)) + 1);
+	size = ft_strlen(s1) + ft_strlen(s2);
+	dst = (char *)malloc(sizeof(char) * size + 1);
 	if (!dst)
 		return (NULL);
 	while (s1 && s1[i] != '\0')

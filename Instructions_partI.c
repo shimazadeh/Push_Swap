@@ -19,12 +19,21 @@ void	swap(t_stack **lst, char *str)
 
 	if (!(*lst) || !((*lst)->next))
 		return ;
-	first = ft_lstnew((*lst)->content);
+	first = *lst;
 	*lst = (*lst)->next;
-	second = ft_lstnew((*lst)->content);
-	*lst = (*lst)->next;
-	ft_lstadd_front(lst, first);
-	ft_lstadd_front(lst, second);
+	second = *lst;
+	if ((*lst)->next)
+	{
+		*lst = (*lst)->next;
+		ft_lstadd_front(lst, first);
+		ft_lstadd_front(lst, second);
+	}
+	else
+	{
+		second->next = first;
+		first->next = NULL;
+		*lst = second;
+	}
 	if (ft_strlen(str))
 		ft_printf("%s\n", str);
 	return ;

@@ -68,12 +68,8 @@ int	checker(char *res, t_stack **head_a, t_stack **head_b)
 		swap(head_a, "");
 	else if (ft_strncmp(res, "sb\n", 3) == 0)
 		swap(head_b, "");
-//	else if (ft_strlen(res) > 1)
 	else
-	{
-		write(1, "Error\n", 6);
 		return (1);
-	}
 	return (0);
 }
 
@@ -81,39 +77,30 @@ int	main(int argc, char **argv)
 {
 	t_stack		*a;
 	t_stack		*b;
-	int			fd;
 	char		*res;
 
-	a = (t_stack *)malloc(sizeof(t_stack));
-	b = (t_stack *)malloc(sizeof(t_stack));
 	a = NULL;
 	b = NULL;
-	if (all_error_checks(argc, argv) == 1)
+	if (all_error_checks(argc, argv) == 1 || argc == 1)
 		return (0);
 	parsing(&a, argv);
-	if (argc == 1)
-		return (0);
-	fd = 0;
-	while ((res = get_next_line(fd)))
+	res = get_next_line(0);
+	while (res)
 	{
 		if (checker(res, &a, &b) == 1)
 		{
 			free(res);
+			ft_free_lst(&a);
+			write(1, "Error\n", 6);
 			return (0);
 		}
 		free(res);
+		res = get_next_line(0);
 	}
 	if (b || sort_check(&a) == 1)
-		write(1, "KO\n",3);
+		write(1, "KO\n", 3);
 	else
 		write(1, "OK\n", 3);
-	/*
-	printf("the content of stack a after sorting:\n");
-	display(a);
-	printf("the content of stack b after sorting:\n");
-	display(b);
-*/
 	ft_free_lst(&a);
-	ft_free_lst(&b);
 	return (0);
 }
