@@ -97,7 +97,10 @@ int	main(int argc, char **argv)
 	while ((res = get_next_line(fd)))
 	{
 		if (checker(res, &a, &b) == 1)
+		{
+			free(res);
 			return (0);
+		}
 		free(res);
 	}
 	if (b || sort_check(&a) == 1)
