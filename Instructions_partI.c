@@ -25,7 +25,8 @@ void	swap(t_stack **lst, char *str)
 	*lst = (*lst)->next;
 	ft_lstadd_front(lst, first);
 	ft_lstadd_front(lst, second);
-	ft_printf("%s\n", str);
+	if (ft_strlen(str))
+		ft_printf("%s\n", str);
 	return ;
 }
 
@@ -53,7 +54,8 @@ void	push(t_stack **head_to, t_stack **head_from, char *str)
 		temp->next = to;
 		*head_to = temp;
 	}
-	ft_printf("%s\n", str);
+	if (ft_strlen(str))
+		ft_printf("%s\n", str);
 	return ;
 }
 

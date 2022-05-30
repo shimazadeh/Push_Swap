@@ -16,36 +16,53 @@ void	display(t_stack *b)
 	while (b)
 	{
 		printf("the content is: %d\n", b->content);
+		printf("the content is: %d\n", b->cost1);
+		printf("the content is: %d\n", b->cost2);
+		printf("the content is: %d\n", b->cost3);
+		printf("the content is: %d\n", b->cost4);
 		printf("\n");
 		b = b->next;
 	}
 }
-/*
-int	check_limits(t_stack **head_a)
-{
-	t_stack	*a;
-	int		min;
-	int		max;
 
-	min = -2147483648;
-	max = 2147483647;
-	a = *head_a;
-	while (a)
+int	find_sec_min(t_stack **head_lst, t_struct *tab)
+{
+	t_stack	*stack;
+	int		temp;
+
+	stack = *head_lst;
+	while (stack)
 	{
-		if (a->content > max || a->content < min)
-			return (1);
-		a = a->next;
+		temp = stack->content;
+		if (tab->min < temp && tab->median > temp)
+			return (temp);
+		stack = stack->next;
 	}
 	return (0);
-}*/
+}
 
-void	manual_sort(t_stack **a, t_stack **b, t_struct *tab, t_ind *index)
+void	push_swap_low_stack(t_stack **a, t_stack **b, t_struct *tab)
 {
+	int		min_sec;
+
+	update_tab(tab, a);
+	min_sec = find_sec_min(a, tab);
+	while (ft_lstsize(*a) > 3)
+	{
+		if ((*a)->content == tab->min || (*a)->content == min_sec)
+			push(b, a, "pb");
+		else
+			rotate(a, "ra");
+	}
 	update_tab(tab, a);
 	initial_sort_stack_a(a, tab);
-	execution_function(a, b, index);
-	update_tab(tab, a);
-	final_check(a, tab);
+	while (*b)
+	{
+		if ((*b)->next && (*b)->content < (*b)->next->content)
+			reverse_rotate(b, "rrb");
+		push(a, b, "pa");
+	}
+	return ;
 }
 
 void	push_swap(t_stack **a, t_stack **b, t_struct *tab, t_ind *index)
@@ -61,12 +78,7 @@ void	push_swap(t_stack **a, t_stack **b, t_struct *tab, t_ind *index)
 		initial_sort_stack_a(a, tab);
 	}
 	else if (ft_lstsize(*a) == 4 || ft_lstsize(*a) == 5)
-	{
-		push(b, a, "pb");
-		if (ft_lstsize(*a) == 4)
-			push(b, a, "pb");
-		manual_sort(a, b, tab, index);
-	}
+		push_swap_low_stack(a, b, tab);
 	else
 	{
 		update_tab(tab, a);
@@ -96,16 +108,6 @@ int	main(int argc, char **argv)
 	if (sort_check(&a) == 0 || argc == 1)
 		return (0);
 	push_swap(&a, &b, tab, index);
-/*
-	if (ft_lstsize(a) < 6)
-		manual_sort(&a, &b, tab, index);
-	else
-	{
-		update_tab(tab, &a);
-		move_to_stack_b(&a, &b, tab);
-		execution_function(&a, &b, index);
-		final_check(&a, tab);
-	}*/
 /*
 	printf("the stack a after execution:\n");
 	display(a);

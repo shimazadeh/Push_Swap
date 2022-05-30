@@ -12,26 +12,32 @@
 
 #include "push_swap.h"
 
-void	swap_both_lst(t_stack **a, t_stack **b)
+void	swap_both_lst(t_stack **a, t_stack **b, char *str)
 {
 	swap(a, "");
 	swap(b, "");
-	ft_printf("ss\n");
+	if (ft_strlen(str))
+		ft_printf("%s\n", str);
+//		ft_printf("ss\n");
 	return ;
 }
 
-void	rotate_both_lst(t_stack **a, t_stack **b)
+void	rotate_both_lst(t_stack **a, t_stack **b, char *str)
 {
 	rotate(a, "");
 	rotate(b, "");
-	ft_printf("rr\n");
+	if (ft_strlen(str))
+		ft_printf("%s\n", str);
+//		ft_printf("rr\n");
 	return ;
 }
 
-void	rev_rotate_both_lst(t_stack **a, t_stack **b)
+void	rev_rotate_both_lst(t_stack **a, t_stack **b, char *str)
 {
 	reverse_rotate(a, "");
 	reverse_rotate(b, "");
-	ft_printf("rrr\n");
+	if (ft_strlen(str))
+		ft_printf("%s\n", str);
+//		ft_printf("rrr\n");
 	return ;
 }

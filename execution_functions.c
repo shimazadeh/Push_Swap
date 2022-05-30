@@ -44,7 +44,7 @@ void	execute_method1(t_ind *index, t_stack **head_a, t_stack **head_b)
 	index_b = index->index_b;
 	while (i < ft_min(index_a, index_b))
 	{
-		rotate_both_lst(head_a, head_b);
+		rotate_both_lst(head_a, head_b, "rr");
 		i++;
 	}
 	while (j < ft_abs_value(index_a, index_b) && index_a != index_b)
@@ -72,7 +72,7 @@ void	execute_method2(t_ind *index, t_stack **head_a, t_stack **head_b)
 	a = ft_lstsize(*head_a) - index_a;
 	b = ft_lstsize(*head_b) - index_b;
 	while (i++ < ft_min(a, b))
-		rev_rotate_both_lst(head_a, head_b);
+		rev_rotate_both_lst(head_a, head_b, "rrr");
 	i = 0;
 	while (i++ < ft_abs_value(a, b) && a != b)
 	{

@@ -116,9 +116,8 @@ void	initial_sort_stack_a(t_stack **head_a, t_struct *tab)
 		reverse_rotate(a, "rra");
 	else if ((*a)->content == tab->min && (*a)->next->content == tab->max)
 	{
-		rotate(a, "ra");
-		swap(a, "sa");
 		reverse_rotate(a, "rra");
+		swap(a, "sa");
 	}
 	return ;
 }

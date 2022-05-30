@@ -45,7 +45,7 @@ int			ft_printf(const char *str, ...);
 int			ft_pf_putchar(const char c);
 int			ft_pf_putstr(char *s);
 
-char		*ft_strndup(char *src, int size);
+char		*ft_strndup_pf(char *src, int size);
 char		*ft_itoa(long long int d);
 char		*ft_itoa_sign(long int d);
 char		*ft_str_cut(t_print *tab, char *str);
