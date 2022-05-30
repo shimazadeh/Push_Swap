@@ -11,21 +11,6 @@
 /* ************************************************************************** */
 #include "push_swap.h"
 
-void	display(t_stack *b)
-{
-	while (b)
-	{
-		printf("the content is: %d\n", b->content);
-		/*
-		printf("the cost1 is: %d\n", b->cost1);
-		printf("the cost2 is: %d\n", b->cost2);
-		printf("the cost3 is: %d\n", b->cost3);
-		printf("the cost4 is: %d\n", b->cost4);*/
-		printf("\n");
-		b = b->next;
-	}
-}
-
 int	sort_check(t_stack **head_a)
 {
 	t_stack	*a;
@@ -89,10 +74,8 @@ int	main(int argc, char **argv)
 	{
 		if (checker(res, &a, &b) == 1)
 		{
-			free(res);
-			ft_free_lst(&a);
 			write(1, "Error\n", 6);
-			return (0);
+			return (free(res), ft_free_lst(&a), 0);
 		}
 		free(res);
 		res = get_next_line(0);
@@ -101,6 +84,5 @@ int	main(int argc, char **argv)
 		write(1, "KO\n", 3);
 	else
 		write(1, "OK\n", 3);
-	ft_free_lst(&a);
-	return (0);
+	return (ft_free_lst(&a), ft_free_lst(&b), 0);
 }
