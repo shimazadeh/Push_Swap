@@ -18,13 +18,6 @@ int	ft_isnum(int c)
 		return (1);
 	return (0);
 }
-/*
-int	ft_isdigit(int c)
-{
-	if (c >= 48 && c <= 57)
-		return (1);
-	return (0);
-}*/
 
 int	ft_issign(int c)
 {
@@ -39,16 +32,6 @@ int	ft_isspace(int c)
 		return (1);
 	return (0);
 }
-/*
-int	ft_strlen(char *s)
-{
-	int	n;
-
-	n = 0;
-	while (s[n] != '\0')
-		n++;
-	return (n);
-}*/
 
 int	ft_strlen_tab(char **tab)
 {

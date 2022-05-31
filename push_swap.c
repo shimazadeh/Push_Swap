@@ -11,20 +11,6 @@
 /* ************************************************************************** */
 #include "push_swap.h"
 
-void	display(t_stack *b)
-{
-	while (b)
-	{
-		printf("the content is: %d\n", b->content);
-		printf("the content is: %d\n", b->cost1);
-		printf("the content is: %d\n", b->cost2);
-		printf("the content is: %d\n", b->cost3);
-		printf("the content is: %d\n", b->cost4);
-		printf("\n");
-		b = b->next;
-	}
-}
-
 int	find_sec_min(t_stack **head_lst, t_struct *tab)
 {
 	t_stack	*stack;
@@ -96,25 +82,17 @@ int	main(int argc, char **argv)
 	t_stack		*b;
 	t_ind		*index;
 
-//	a = (t_stack *)malloc(sizeof(t_stack));
-//	b = (t_stack *)malloc(sizeof(t_stack));
 	tab = (t_struct *)malloc(sizeof(t_struct));
 	index = (t_ind *)malloc(sizeof(t_ind));
 	a = NULL;
 	b = NULL;
 	if (all_error_checks(argc, argv) == 1)
-		return (0);
+		return (free(tab), free(index), 0);
 	parsing(&a, argv);
 	if (sort_check(&a) == 0 || argc == 1)
-		return (0);
+		return (ft_free_lst(&a), free(tab), free(index), 0);
 	push_swap(&a, &b, tab, index);
-/*	swap(&a, "sa");
-	printf("the stack a after execution:\n");
-	display(a);
-	printf("the stack b after execution:\n");
-	display(b);*/
 	ft_free_lst(&a);
-//	ft_free_lst(&b);
 	free(tab);
 	free(index);
 	return (0);

@@ -128,7 +128,7 @@ void		final_sort_even(t_stack **head_a, int position, int len);
 
 //BONUSES
 int			checker(char *res, t_stack **head_a, t_stack **head_b);
-
+void		result_check(t_stack **head_a, t_stack **head_b);
 int			ft_strlen_gnl(char *s1);
 int			ft_gnl_strchr(char *s1);
 char		*ft_strndup(char *src, int size);
@@ -136,8 +136,5 @@ char		*ft_strjoin(char *s1, char *s2);
 char		*get_next_line(int fd);
 void		ft_update_buffer(char *buffer, int size);
 void		ft_update_line(char *line, int size);
-
-//not sure if I need it
-void		display(t_stack *b);
 
 #endif

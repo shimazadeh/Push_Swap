@@ -42,20 +42,22 @@ int	allowed_char_check(char **arg)
 {
 	int	i;
 	int	j;
-	int	size;
 
 	i = 1;
 	while (arg[i])
 	{
-		size = ft_strlen(arg[i]);
 		j = 0;
-		while (arg[i][j] && j < size)
+		while (arg[i][j] && j < ft_strlen(arg[i]))
 		{
 			if (!ft_isnum(arg[i][j]) && !ft_isspace(arg[i][j]))
 				return (1);
-			if (arg[i][j] == 45 || arg[i][j] == 43)
+			if (ft_issign(arg[i][j]) == 1)
 			{
-				if (arg[i][j + 1] == 45 || arg[i][j + 1] == 43)
+				if (ft_strlen(arg[i]) == 1 || ft_issign(arg[i][j + 1]) == 1)
+					return (1);
+				if (ft_isdigit(arg[i][j + 1]) == 0)
+					return (1);
+				if (arg[i][j - 1] && ft_isdigit(arg[i][j - 1]) == 1)
 					return (1);
 			}
 			j++;

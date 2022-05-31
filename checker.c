@@ -1,14 +1,15 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   push_swap.c                                        :+:      :+:    :+:   */
+/*   checker.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: shabibol <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/04/24 15:49:59 by shabibol          #+#    #+#             */
-/*   Updated: 2022/04/24 15:50:03 by shabibol         ###   ########.fr       */
+/*   Created: 2022/05/31 15:16:34 by shabibol          #+#    #+#             */
+/*   Updated: 2022/05/31 15:16:36 by shabibol         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
 #include "push_swap.h"
 
 int	sort_check(t_stack **head_a)
@@ -58,6 +59,15 @@ int	checker(char *res, t_stack **head_a, t_stack **head_b)
 	return (0);
 }
 
+void	result_check(t_stack **head_a, t_stack **head_b)
+{
+	if (*head_b || sort_check(head_a) == 1)
+		write(1, "KO\n", 3);
+	else
+		write(1, "OK\n", 3);
+	return ;
+}
+
 int	main(int argc, char **argv)
 {
 	t_stack		*a;
@@ -69,20 +79,19 @@ int	main(int argc, char **argv)
 	if (all_error_checks(argc, argv) == 1 || argc == 1)
 		return (0);
 	parsing(&a, argv);
+	if (sort_check(&a) == 0)
+		return (ft_free_lst(&a), 0);
 	res = get_next_line(0);
 	while (res)
 	{
 		if (checker(res, &a, &b) == 1)
 		{
 			write(1, "Error\n", 6);
-			return (free(res), ft_free_lst(&a), 0);
+			return (free(res), ft_free_lst(&a), ft_free_lst(&b), 0);
 		}
 		free(res);
 		res = get_next_line(0);
 	}
-	if (b || sort_check(&a) == 1)
-		write(1, "KO\n", 3);
-	else
-		write(1, "OK\n", 3);
+	result_check(&a, &b);
 	return (ft_free_lst(&a), ft_free_lst(&b), 0);
 }
