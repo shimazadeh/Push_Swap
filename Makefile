@@ -22,31 +22,29 @@ SRCS_BONUS = get_next_line.c Libft_Util.c checker.c get_next_line_utils.c Libft_
 OBJS = $(SRCS:%.c=%.o)
 OBJS_BONUS = $(SRCS_BONUS:%.c=%.o)
 
-FLAGS = -g3 -Wall -Wextra -Werror
+FLAGS = -Wall -Wextra -Werror
 
-all:: $(NAME)
+all: $(NAME)
+
+bonus: $(NAME_BONUS)
 
 $(NAME): $(OBJS)
 	$(MAKE) -C ./printf
 	gcc $(FLAGS) $(OBJS) -o $(NAME) $(PRINTF)
 
-$(OBJS): $(SRCS)
-	gcc $(FLAGS) -c $(SRCS)
+%.o: %.c
+	gcc $(FLAGS) -c $< -o $@
 
 $(NAME_BONUS): $(OBJS_BONUS)
 	$(MAKE) -C ./printf
 	gcc $(FLAGS) $(OBJS_BONUS) -o $(NAME_BONUS) $(PRINTF)
-
-$(OBJS_BONUS): $(SRCS_BONUS)
-	gcc $(FLAGS) -c $(SRCS_BONUS)
-
-bonus: $(NAME_BONUS)
 
 clean:
 	rm -f *.o
 	$(MAKE) clean -C ./printf
 
 fclean: clean
-	rm -f $(NAME) $(NAME_BONUS)
+	rm -rf $(NAME)
+	rm -rf $(NAME_BONUS)
 
 re: fclean all
