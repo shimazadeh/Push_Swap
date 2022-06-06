@@ -40,15 +40,15 @@ int	checker(char *res, t_stack **head_a, t_stack **head_b)
 		push(head_a, head_b, "");
 	else if (ft_strncmp(res, "rr\n", 3) == 0)
 		rotate_both_lst(head_a, head_b, "");
-	else if (ft_strncmp(res, "rrr\n", 3) == 0)
+	else if (ft_strncmp(res, "rrr\n", 4) == 0)
 		rev_rotate_both_lst(head_a, head_b, "");
 	else if (ft_strncmp(res, "ra\n", 3) == 0)
 		rotate(head_a, "");
-	else if (ft_strncmp(res, "rra\n", 3) == 0)
+	else if (ft_strncmp(res, "rra\n", 4) == 0)
 		reverse_rotate(head_a, "");
 	else if (ft_strncmp(res, "rb\n", 3) == 0)
 		rotate(head_b, "");
-	else if (ft_strncmp(res, "rrb\n", 3) == 0)
+	else if (ft_strncmp(res, "rrb\n", 4) == 0)
 		reverse_rotate(head_b, "");
 	else if (ft_strncmp(res, "sa\n", 3) == 0)
 		swap(head_a, "");
