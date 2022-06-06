@@ -79,8 +79,6 @@ int	main(int argc, char **argv)
 	if (all_error_checks(argc, argv) == 1 || argc == 1)
 		return (0);
 	parsing(&a, argv);
-	if (sort_check(&a) == 0)
-		return (ft_free_lst(&a), 0);
 	res = get_next_line(0);
 	while (res)
 	{
